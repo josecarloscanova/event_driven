@@ -1,6 +1,0 @@
-class WmiService
-
-  private 
-  
-
-end
