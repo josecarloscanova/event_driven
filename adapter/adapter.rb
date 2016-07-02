@@ -18,7 +18,7 @@ class Adapter
       
       def add_adapter *args
           args = verify_if
-          @messages_adapter.push(@@adaptees.new(clazz,clazz)) unless clazz.is_a?Event
+          @messages_adapter.push(@@adaptees.new(args[:type],args[:class])) if clazz.is_a?Event
           raise_default_event_message message unless clazz.nil?
       end 
       

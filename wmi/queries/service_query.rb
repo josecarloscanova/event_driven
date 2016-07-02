@@ -1,6 +1,6 @@
 require_relative 'query'
 
-class ServiceRecordQuery
+class ServiceRecordQuery < Query
   
   def initialize
     query = " Select * from Win32_Service  "
