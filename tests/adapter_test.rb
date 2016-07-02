@@ -15,11 +15,11 @@ class AdapterTest < Minitest::Test
         @adapter.send_message({:e => 'message_event_1'})
       end
       
-     def test_generate_message_1
-         @adapter = Adapter.new
-         @adapter.add_adapter nil
-         @adapter.send_message 'message_event'
-     end
+       def test_generate_message_1
+           @adapter = Adapter.new
+           @adapter.add_adapter nil
+           @adapter.send_message 'message_event'
+       end
    
         
 end
