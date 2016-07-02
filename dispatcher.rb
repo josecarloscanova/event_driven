@@ -9,8 +9,8 @@ class Dispatcher
   end
   
   def dispatch  message
-      changed          
-      message    
+      changed
+      message
       notify_observers(message)
     true
   end
