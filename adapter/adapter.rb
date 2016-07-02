@@ -34,6 +34,7 @@ class Adapter
                 else
                   raise_invalid_adapter
                 end       
+             return args #transformed on something.   
           end
           
           def check_if_can_add_adapter
