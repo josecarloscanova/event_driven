@@ -3,15 +3,24 @@ class WmiProviderPath
   attr_reader(:path)
   
   def initialize
+    prepare
     load_paths
   end
   
+  def prepare
+      @@paths = Array.new 
+      @@path = Struct.new(:in)
+    true
+  end
+  
   def load_paths
-    return to_path_hash
+      to_path_hash
+     true
   end
   
   def to_path_hash
-    return @@paths.hash
+      @@paths.hash
+    true
   end
   
   private 
@@ -20,50 +29,62 @@ class WmiProviderPath
     
     def configure_path
       
-      @@paths.puts('ROOT')
-      @@paths.puts('ROOT\subscription')
-      @@paths.puts('ROOT\DEFAULT')
-      @@paths.puts('ROOT\CIMV2')
-      @@paths.puts('ROOT\msdtc')
-      @@paths.puts('ROOT\Cli')
-      @@paths.puts('ROOT\SECURITY')
-      @@paths.puts('ROOT\SecurityCenter2')
-      @@paths.puts('ROOT\RSOP')
-      @@paths.puts('ROOT\PEH')
-      @@paths.puts('ROOT\StandardCimv2')
-      @@paths.puts('ROOT\WMI')
-      @@paths.puts('ROOT\directory')
-      @@paths.puts('ROOT\Interop')
-      @@paths.puts('ROOT\Hardware')
-      @@paths.puts('ROOT\ServiceModel')
-      @@paths.puts('ROOT\SecurityCenter')
-      @@paths.puts('ROOT\VisualSVN')
-      @@paths.puts('ROOT\Microsoft')
-      @@paths.puts('ROOT\CIMV2\mdm')
-      @@paths.puts('ROOT\CIMV2\Security')
-      @@paths.puts('ROOT\CIMV2\power')
-      @@paths.puts('ROOT\CIMV2\Applications')
-      @@paths.puts('ROOT\RSOP\User')
-      @@paths.puts('ROOT\RSOP\Computer')
-      @@paths.puts('ROOT\directory\LDAP')
-      @@paths.puts('ROOT\VisualSVN\RepoCfg')
-      @@paths.puts('ROOT\Microsoft\SqlServer')
-      @@paths.puts('ROOT\Microsoft\HomeNet')
-      @@paths.puts('ROOT\Microsoft\protectionManagement')
-      @@paths.puts('ROOT\Microsoft\Windows')
-      @@paths.puts('ROOT\Microsoft\SecurityClient')
-      @@paths.puts('ROOT\CIMV2\mdm\dmmap')
-      @@paths.puts('ROOT\CIMV2\Security\MicrosoftTpm')
-      @@paths.puts('ROOT\CIMV2\Security\MicrosoftVolumeEncryption')
-      @@paths.puts('ROOT\CIMV2\Applications\WindowsParentalControls')
-      @@paths.puts('ROOT\CIMV2\Applications\Games')
-      @@paths.puts('ROOT\Microsoft\SqlServer\ServerEvents')
-      @@paths.puts('ROOT\Microsoft\SqlServer\ComputerManagement12')
-      @@paths.puts('ROOT\Microsoft\Windows\RemoteAccess')
-      @@paths.puts('ROOT\Microsoft\Windows\Dns')
-      @@paths.puts('ROOT\Microsoft\Windows\Powershellv3')
-      @@paths.puts('ROOT\Microsoft\Windows\WindowsUpdate')
+      @@paths.push('ROOT')
+      @@paths.push('ROOT\subscription')
+      @@paths.push('ROOT\DEFAULT')
+      @@paths.push('ROOT\CIMV2')
+      @@paths.push('ROOT\msdtc')
+      @@paths.push('ROOT\Cli')
+      @@paths.push('ROOT\SECURITY')
+      @@paths.push('ROOT\SecurityCenter2')
+      @@paths.push('ROOT\RSOP')
+      @@paths.push('ROOT\PEH')
+      @@paths.push('ROOT\StandardCimv2')
+      @@paths.push('ROOT\WMI')
+      @@paths.push('ROOT\directory')
+      @@paths.push('ROOT\Interop')
+      @@paths.push('ROOT\Hardware')
+      @@paths.push('ROOT\ServiceModel')
+      @@paths.push('ROOT\SecurityCenter')
+      @@paths.push('ROOT\VisualSVN')
+      @@paths.push('ROOT\Microsoft')
+      @@paths.push('ROOT\CIMV2\mdm')
+      @@paths.push('ROOT\CIMV2\Security')
+      @@paths.push('ROOT\CIMV2\power')
+      @@paths.push('ROOT\CIMV2\Applications')
+      @@paths.push('ROOT\RSOP\User')
+      @@paths.push('ROOT\RSOP\Computer')
+      @@paths.push('ROOT\directory\LDAP')
+      @@paths.push('ROOT\VisualSVN\RepoCfg')
+      @@paths.push('ROOT\Microsoft\SqlServer')
+      @@paths.push('ROOT\Microsoft\HomeNet')
+      @@paths.push('ROOT\Microsoft\protectionManagement')
+      @@paths.push('ROOT\Microsoft\Windows')
+      @@paths.push('ROOT\Microsoft\SecurityClient')
+      @@paths.push('ROOT\CIMV2\mdm\dmmap')
+      @@paths.push('ROOT\CIMV2\Security\MicrosoftTpm')
+      @@paths.push('ROOT\CIMV2\Security\MicrosoftVolumeEncryption')
+      @@paths.push('ROOT\CIMV2\Applications\WindowsParentalControls')
+      @@paths.push('ROOT\CIMV2\Applications\Games')
+      @@paths.push('ROOT\Microsoft\SqlServer\ServerEvents')
+      @@paths.push('ROOT\Microsoft\SqlServer\ComputerManagement12')
+      @@paths.push('ROOT\Microsoft\Windows\RemoteAccess')
+      @@paths.push('ROOT\Microsoft\Windows\Dns')
+      @@paths.push('ROOT\Microsoft\Windows\Powershellv3')
+      @@paths.push('ROOT\Microsoft\Windows\WindowsUpdate')
       
-    end
+      @@paths.each{|k|  mount_path_config @@path.new(split_path(k))}
+    end 
+      
+      def mount_path_config *path_splitted
+        key = path_splitted.flatten.last
+        path_struct =  path_splitted.flatten.collect {|k| @@path.new(k)}
+        {key => path_struct}
+      end
+    
+      def split_path what
+        what.split('\\')
+      end  
+      
   
 end
