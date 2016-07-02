@@ -79,15 +79,19 @@ class WmiProviderPath
     end 
       
     def mount_path_config *path_splitted
-        puts " Path Splitted #{path_splitted}"
-        key = path_splitted.flatten[0].in.last
-        path_struct =  (path_splitted.flatten[0].in.collect {|k| @@path.new(k)})[0]
-        {key => path_struct}
-    end
+          level_counter = 0
+          hash_keys = {}
+          path_struct_hash = Hash.new
+          path_struct =  path_splitted.flatten.collect {|k|
+               level_counter+=1
+               hash_keys[level_counter] = @@path.new(k) 
+          }
+          @@paths.push(hash_keys)
+     end
       
     def split_path what
         what.split('\\')
-    end    
+    end  
       
   
 end

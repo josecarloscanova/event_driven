@@ -4,31 +4,26 @@ class PathSplitTest < Minitest::Test
   
       def setup 
         @@paths = Array.new 
-        @@path = Struct.new(:in , :level)
+        @@path = Struct.new(:in)
         configure_path
       end
       
       def test_spring_path
-#        @@paths.each{|k| print_path mount_path_config(@@path.new(split_path(k) , 'level_0'))}
-        puts  @@paths.select{
+          @@paths.select{
                 |a|
-                 a[4]
+                a if a.select{|k,v| v.in == 'Windows'}.length > 0
         }
-#                h[h.keys[0]][i].level == 0
-#  |h , i| 
-#                 puts  @@paths[i]
-  #                h[h.keys[0]][i].level == 0   
-#        puts Symbol.all_symbols.size    #=> 903
-#        puts Symbol.all_symbols[1..Symbol.all_symbols.length]
+      end
+      
+      def test_spring_path1
+          puts  @@paths.select{
+                        |a|
+                        a unless a[2].nil? 
+                      }.group_by{ |u|
+                        u[2]
+                      }
       end
   
-#      def mount_path_config *path_splitted
-#          key = path_splitted.flatten.last
-#          puts path_splitted
-#          path_struct =  path_splitted.flatten.collect {|k| @@path.new(k)}
-#         return path_struct  # Hash.new({key => path_struct})
-#      end
-      
       def split_path what
           what.split("\\")
       end  
@@ -91,10 +86,9 @@ class PathSplitTest < Minitest::Test
          level_counter = 0
          hash_keys = {}
          path_struct_hash = Hash.new
-         key = path_splitted.flatten.last
-            path_struct =  path_splitted.flatten.collect {|k|
+         path_struct =  path_splitted.flatten.collect {|k|
               level_counter+=1
-              hash_keys[level_counter] = k 
+              hash_keys[level_counter] = @@path.new(k) 
          }
          @@paths.push(hash_keys)
     end
