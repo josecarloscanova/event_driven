@@ -32,7 +32,7 @@ class Adapter
                 elsif args.length == 2
                    check_if_is_type_adapter
                 else
-                    raise_invalid_adapter
+                  raise_invalid_adapter
                 end       
           end
           
