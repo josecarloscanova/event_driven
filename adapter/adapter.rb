@@ -32,7 +32,7 @@ class Adapter
                 case adaptee_cfg.length
                     when  1 then
                       raise_invalid_adapter if check_if_can_add_adapter adaptee_cfg
-                      return @@adaptees.new(adaptee_cfg[0] , adaptee_cfg[0])
+                      return @@adaptees.new(adaptee_cfg[0].class.name , adaptee_cfg[0])
                     when 2 then
                       raise_invalid_adapter if check_if_is_type_adapter adaptee_cfg
                       return @@adaptees.new(adaptee_cfg[0] , adaptee_cfg[1])
