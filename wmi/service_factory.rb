@@ -1,6 +1,6 @@
 class ServiceRecordFactory
   
-  def get_empty_service_record
+  def ServiceRecordFactory.get_empty_service_record
     @@service_record.new
   end
   

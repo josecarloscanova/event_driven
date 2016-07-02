@@ -3,6 +3,11 @@ class ProcessFactory
   def initialize
   end
     
+  def ProcessFactory.get_empty_process_record
+    @@process.new
+  end
+  
+  
   def ProcessFactory.simple_process_with content
       verify_record content
       @@process.new(content['osname'] , content['caption'] , content['csname'] , content['processid'] , content['parentprocessid'] , content['description'] )
