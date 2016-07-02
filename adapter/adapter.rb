@@ -16,17 +16,38 @@ class Adapter
         DefaultEvent.new(message)
       end  
       
-      def add_adapter clazz = nil
+      def add_adapter *args
+          args = verify_if
           @messages_adapter.push(@@adaptees.new(clazz,clazz)) unless clazz.is_a?Event
-        raise_default_event_message message
+          raise_default_event_message message unless clazz.nil?
       end 
       
-      def add_adapter type , clazz
-          @messages_adapter.push(@@adaptees.new(type,clazz))
-      end 
   
       private 
             
+          def vefify_if args
+                return raise_invalid_function_call unless args.is_a?Array 
+                if args.length == 1 then
+                    check_if_can_add_adapter
+                elsif args.length == 2
+                   check_if_is_type_adapter
+                else
+                    raise_invalid_adapter
+                end       
+          end
+          
+          def check_if_can_add_adapter
+            true  
+          end
+          
+          def check_if_is_type_adapter
+            true
+          end  
+          
+          def raise_invalid_function_call msg = nil
+            raise ArgumentError , "Invalid Function call"
+          end  
+          
           @@adaptees = Struct.new(:alias , :class)
         
 end
