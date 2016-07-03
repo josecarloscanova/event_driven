@@ -1,29 +1,22 @@
-require_relative '../event/event'
-require_relative '../event/default_event'
-
 class Adapter 
   
       def initialize
         @messages_adapter =[]
       end
   
-      def send_message *message
-         return @messages_adapter.select{|h| h[:class].new(message)} unless @messages_adapter[0].nil?
-         raise_default_event message
-      end
-      
-      def raise_default_event message
-        DefaultEvent.new(message)
-      end  
+      def add_adapter *args
+          adaptee = verify_if args
+          @messages_adapter.push(adaptee)
+          raise_invalid_function_call  unless adaptee == true
+      end 
       
       def add_adapter *args
           adaptee = verify_if args
-          @messages_adapter.push(adaptee) if adaptee[:class].is_a?Event.class
-          raise_invalid_function_call  if adaptee.nil?
+          @messages_adapter.push(adaptee)
+          raise_invalid_function_call  unless adaptee == true
       end 
-      
   
-      private 
+      protected 
             
           def verify_if *args
             adaptee_cfg = args.flatten
@@ -41,7 +34,7 @@ class Adapter
           end
           
           def check_if_can_add_adapter *args
-            args.flatten[0].is_a?Event
+            true
           end
           
           def check_if_is_type_adapter *args

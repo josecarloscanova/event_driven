@@ -1,11 +1,12 @@
 require 'wmi-lite'
 require_relative '../wmi/wmi_configuration_factory'
-class WmiService
+class WmiService 
 
   attr_reader(:service_record)
   
-  def intialize args
-      create_wmi_instance args
+  def initialize args
+    $wmi_instances = {}
+    create_wmi_instance args
   end
   
   def create_wmi_instance args
@@ -15,9 +16,9 @@ class WmiService
   private 
   
   def configure_wmi_instance args
-      @service_record_configuration = WmiConfigurationFactory.record_with(args)
+      service_record_configuration = WmiConfigurationFactory.record_with(args)
       @wmi = WmiLite::Wmi.new(service_record_configuration.location)
-      $wmi_instance[:service] = @wmi
+      $wmi_instances[service_record_configuration.service] = self
   end
   
   def verified args

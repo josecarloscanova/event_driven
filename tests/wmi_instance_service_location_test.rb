@@ -29,9 +29,13 @@ class ServiceLocationTest < Minitest::Test
   end
   
   def test_wmi_instance_configuration 
-      wmi = WmiService.new({:service => 'wmi_service' , :location => 'root\CIMV2'})
-      assert_equal(wmi.class , WmiLite::Wmi , 'Testing WMI Instance')
-      assert_equal($wmi_instance['wmi_service'] , wmi , "Verified Global instance" )
+    configuration = Hash.new
+    configuration[:service]   = 'wmi_service' 
+    configuration[:location]  = 'root\CIMV2'
+      
+      wmi = WmiService.new configuration
+      assert_equal(wmi.class , WmiService , 'Testing WMI Instance')
+#      assert_equal($wmi_instances[configuration[:service]] , wmi , "Verified Global instance" )
   end
   
 end

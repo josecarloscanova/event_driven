@@ -6,7 +6,7 @@ class WmiConfigurationFactory
     
     def WmiConfigurationFactory.record_with content
       verify_record content
-      @@service_record.new(content['service'] , content['location'])
+      @@service_record.new(content[:service] , content[:location])
     end  
     
     private

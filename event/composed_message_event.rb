@@ -14,7 +14,7 @@ class ComposedMessageEvent < Event
   
   protected 
   
-  @@id = Struct.new(:id)
-  @@body = Struct.new(:body)
+    @@id = Struct.new(:id)
+    @@body = Struct.new(:body)
   
 end
