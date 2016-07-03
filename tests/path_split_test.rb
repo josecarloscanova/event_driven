@@ -23,7 +23,13 @@ class PathSplitTest < Minitest::Test
                         u[2]
                       }
       end
-  
+      
+      def test_verify_depth
+        depth = @@paths.inject{  |current,next_el| 
+          current.keys.length >= current.keys.length ? current  : next_el
+        }.keys.length
+      end
+      
       def split_path what
           what.split("\\")
       end  

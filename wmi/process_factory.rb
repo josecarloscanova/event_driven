@@ -7,7 +7,6 @@ class ProcessFactory
     @@process.new
   end
   
-  
   def ProcessFactory.process_with content
       verify_record content
       @@process.new(content['osname'] , content['caption'] , content['csname'] , content['processid'] , content['parentprocessid'] , content['description'] )
@@ -19,7 +18,7 @@ class ProcessFactory
     raise ArgumentError , 'Wrong number of arguments' unless @@process.members.select{|k,v|
            content.respond_to?k
            }.length <= @@process.members.length
-   end
+  end
   
   @@process = Struct.new(:osname  , :caption  , :csname , :processid ,  :parentprocessid , :description)
   
