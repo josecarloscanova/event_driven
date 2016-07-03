@@ -17,6 +17,7 @@ class WmiService
   def configure_wmi_instance args
       @service_record_configuration = WmiConfigurationFactory.record_with(args)
       @wmi = WmiLite::Wmi.new(service_record_configuration.location)
+      $wmi_instance[:service] = @wmi
   end
   
   def verified args

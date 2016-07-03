@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'wmi-lite'
 require_relative '../wmi/wmi_configuration_factory'
+require_relative '../wmi/wmi_service'
 
 class ServiceLocationTest < Minitest::Test
   
@@ -28,9 +29,9 @@ class ServiceLocationTest < Minitest::Test
   end
   
   def test_wmi_instance_configuration 
-      service_record_configuration = WmiConfigurationFactory.record_with({:service => 'wmi_service' , :location => 'root\CIMV2'})
-      @wmi = WmiLite::Wmi.new(service_record_configuration.location)
-      assert_equal(@wmi.class , WmiLite::Wmi , 'Testing WMI Instance')
+      wmi = WmiService.new({:service => 'wmi_service' , :location => 'root\CIMV2'})
+      assert_equal(wmi.class , WmiLite::Wmi , 'Testing WMI Instance')
+      assert_equal($wmi_instance['wmi_service'] , wmi , "Verified Global instance" )
   end
   
 end
