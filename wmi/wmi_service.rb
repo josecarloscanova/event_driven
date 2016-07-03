@@ -1,6 +1,11 @@
 require 'wmi-lite'
+<<<<<<< HEAD
 require_relative '../wmi/wmi_configuration_factory'
 class WmiService 
+=======
+
+class WmiService
+>>>>>>> refs/remotes/origin/master
 
   attr_reader(:service_record)
   
