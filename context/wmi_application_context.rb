@@ -20,7 +20,7 @@ module Nanotek
                                        }
                                     $wmi_application_context_loaded = true
                                    end
-              }.join                         
+              }.join
           end
          
 #          private
