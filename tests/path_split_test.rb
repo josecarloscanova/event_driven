@@ -6,23 +6,41 @@ class PathSplitTest < Minitest::Test
         @@paths = Array.new 
         @@path = Struct.new(:in)
         configure_path
+        @evaluator = lambda { @@paths.select{
+                                      |a|
+                                      a if a.select{|k,v| v.in == 'Windows'}.length > 0
+                                    }
+                             } 
+        @evaluator1 = lambda { @@paths.select{
+                                      |a|
+                                      a if a.select{|k,v| v.in == 'Windows'}.length > 0
+                                    }
+                      }    
+        @evaluator3 = lambda { |value| @@paths.select{
+                                              |a|
+                                              a if a.select{|k,v| v.in == value}.length > 0
+                                            }
+                              }                                       
       end
-      
-      def test_spring_path
-          @@paths.select{
-                |a|
-                a if a.select{|k,v| v.in == 'Windows'}.length > 0
-        }
+                                
+      def test_spring_path2
+         assert_equal(@evaluator.call , @evaluator1.call , "They are not Equal" )
       end
       
       def test_spring_path1
           puts  @@paths.select{
-                        |a|
-                        a unless a[2].nil? 
-                      }.group_by{ |u|
-                        u[2]
-                      }
+                                |a|
+                                a unless a[2].nil? 
+                              }.group_by{ |u|
+                                u[2]
+                              }
       end
+      
+      def test_configuration_unicity
+       result =  @evaluator3.call('subscription')
+       assert_equal(result.length , 1 , "Result InCorrect result_length shall be unique for now")
+       puts "The result of the search #{result}"
+      end  
       
       def test_verify_depth
         depth = @@paths.inject{  |current,next_el| 
@@ -78,11 +96,11 @@ class PathSplitTest < Minitest::Test
        path_config.push('ROOT\CIMV2\Applications\WindowsParentalControls')
        path_config.push('ROOT\CIMV2\Applications\Games')
        path_config.push('ROOT\Microsoft\SqlServer\ServerEvents')
-       path_config.push('ROOT\Microsoft\SqlServer\ComputerManagement12')
        path_config.push('ROOT\Microsoft\Windows\RemoteAccess')
        path_config.push('ROOT\Microsoft\Windows\Dns')
        path_config.push('ROOT\Microsoft\Windows\Powershellv3')
        path_config.push('ROOT\Microsoft\Windows\WindowsUpdate')
+       path_config.push('ROOT\Microsoft\SqlServer\ComputerManagement12')
        
        path_config.each{|k| mount_path_config(split_path(k))}
          

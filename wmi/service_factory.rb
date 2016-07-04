@@ -9,8 +9,6 @@ class ServiceRecordFactory
     @@service_record.new(content['description'] , content['checkpoint'] , content['creationclassname'] , content['startname'] , content['systemname'] , content['name'] )
   end  
   
-  
-  
   private
   
   def ServiceRecordFactory.verify_record content

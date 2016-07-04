@@ -24,9 +24,9 @@ class WmiServiceConfigurator
   def build_configurations *paths
       paths.flatten.each{ 
         |p| 
-        splitted =  (split_path p) 
+        splitted = split_path p 
         last =  splitted.nil? ? p : splitted.last 
-        @wmi_configurations.push(build_wmi_configuration(last , p)) unless p.nil?
+        @wmi_configurations.push(build_wmi_configuration(l , p)) unless p.nil?
       }
   end
   

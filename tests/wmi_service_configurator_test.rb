@@ -1,6 +1,6 @@
 require 'minitest/autorun'
-require_relative '../wmi/wmi_service_configurator'
 require_relative '../wmi/wmi_service'
+require_relative '../wmi/wmi_service_configurator'
 
 class WmiServiceConfiguratorTest < Minitest::Test
   

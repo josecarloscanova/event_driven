@@ -11,7 +11,6 @@ class ComposedMessageEvent < Event
       super(@id)
   end
   
-  
   protected 
   
     @@id = Struct.new(:id)

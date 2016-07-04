@@ -20,7 +20,6 @@ class AdapterTest < Minitest::Test
            @adapter.add_adapter nil
            @adapter.send_message 'message_event'
        end
-   
         
 end
 
