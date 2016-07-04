@@ -7,7 +7,6 @@ require_relative '../wmi/wmi_service_configurator'
 class WmiServiceTest < Minitest::Test
   
   def setup 
-    $wmi_context = WmiContext
   end
   
   def test_configure
