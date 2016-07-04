@@ -16,7 +16,6 @@ class WmiProviderPath
      true
   end
   
-  
   def get_wmi_path *path_sufix
     result = find_path(path_sufix[0])
     build_path result
