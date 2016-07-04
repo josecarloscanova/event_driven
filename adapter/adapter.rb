@@ -18,7 +18,7 @@ class Adapter
   
       protected 
             
-          def verify_if *args
+         def verify_if *args
             adaptee_cfg = args.flatten
                 return raise_invalid_function_call unless adaptee_cfg.is_a?Array 
                 return raise_invalid_function_call unless (adaptee_cfg.length >=1 && adaptee_cfg.length <=2) 

@@ -14,9 +14,9 @@ class WmiServiceTest < Minitest::Test
     wmisc = WmiServiceConfigurator.new
     wmisc.wmi_configurations.each {
         |p|
-      wmiservice  = WmiService.new(p)
-      prepare wmiservice
-      verify wmiservice
+            wmiservice  = WmiService.new(p)
+            prepare wmiservice
+            verify wmiservice
     }
   end
   

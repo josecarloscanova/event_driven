@@ -2,10 +2,12 @@ require 'minitest/autorun'
 
 class PathSplitTest < Minitest::Test
   
-      def setup 
+      def setup
+        
         @@paths = Array.new 
         @@path = Struct.new(:in)
         configure_path
+        
         @evaluator = lambda { @@paths.select{
                                       |a|
                                       a if a.select{|k,v| v.in == 'Windows'}.length > 0
@@ -20,7 +22,7 @@ class PathSplitTest < Minitest::Test
                                               |a|
                                               a if a.select{|k,v| v.in == value}.length > 0
                                             }
-                              }                                       
+                              }
       end
                                 
       def test_spring_path2
