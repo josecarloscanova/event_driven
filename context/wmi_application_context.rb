@@ -10,7 +10,7 @@ module Nanotek
         protected 
         
           def WmiApplicationContext.configure_application_context
-            tap {          
+            Thread.new {          
                                   if $wmi_application_context_loaded.nil? || $wmi_application_context_loaded == false then
                                        wmisc = WmiServiceConfigurator.new
                                        wmisc.wmi_configurations.each {
@@ -20,7 +20,8 @@ module Nanotek
                                        }
                                     $wmi_application_context_loaded = true
                                    end
-              }
+              }.join
+            true  
           end
          
     end

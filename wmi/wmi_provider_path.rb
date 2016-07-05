@@ -18,8 +18,13 @@ class WmiProviderPath
   
   def get_wmi_path *path_sufix
     result = find_path(path_sufix[0])
-    build_path result
   end
+  
+  def find_path path_sufix 
+    @@paths.select{|p|
+                    p.include?path_sufix
+                  }
+  end  
   
   def get_wmi_paths 
       @wmi_paths = []
@@ -83,3 +88,5 @@ class WmiProviderPath
       
   
 end
+
+puts WmiProviderPath.new().find_path('SecurityClient')

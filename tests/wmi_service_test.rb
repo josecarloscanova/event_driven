@@ -24,7 +24,7 @@ class WmiServiceTest < Minitest::Test
   end
   
   def verify wmi_instance
-    assert_equal($wmi_context.get_service(wmi_instance.service_record_configuration) , wmi_instance , "Not Equal")
+    assert_equal(WmiContext.get_service(wmi_instance.service_record_configuration) , wmi_instance , "Not Equal")
   end
   
 end
