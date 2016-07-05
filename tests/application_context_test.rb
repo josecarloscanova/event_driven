@@ -15,8 +15,8 @@ class ApplicationContextTest < Minitest::Test
   
   def test_application_context_initialization_1
       Nanotek::WmiApplicationContext.new{
-                      tap { Nanotek::WmiApplicationContext.configure_application_context
-                            assert_equal($wmi_application_context_loaded , true , "Wmi Application Context not Initialized")}
+                      Nanotek::WmiApplicationContext.configure_application_context
+                            assert_equal($wmi_application_context_loaded , true , "Wmi Application Context not Initialized")
                  }.join
       puts "Wmi application context #{$wmi_application_context_loaded}"
     true
