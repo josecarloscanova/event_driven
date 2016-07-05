@@ -24,12 +24,10 @@ class ApplicationContextTest < Minitest::Test
   end
 
 
-  def test_application_context_initialization_1
+  def test_application_context_initialization_12
        Nanotek::WebApplicationContext.new{
                        Nanotek::WebApplicationContext.configure_application_context
-                             assert_equal($wmi_application_context_loaded , true , "Wmi Application Context not Initialized")
                   }.join
-       puts "Wmi application context #{$wmi_application_context_loaded}"
      true
    end
   
