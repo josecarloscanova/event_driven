@@ -1,0 +1,2 @@
+class WmiAutoQueryTest
+end

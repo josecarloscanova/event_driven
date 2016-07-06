@@ -1,9 +1,15 @@
 require_relative 'wmi_class_base'
 
-class WmiRootCimv2Class < Nanotek::WmiClassBase
+module Nanotek
+
+  
+  class WmiRootCimv2Class < Nanotek::WmiClassBase
+  
+  attr_reader(:classes)
   
   def initialize
-    @classes = {}
+      @classes = {}
+      load_wmi_classes
   end
   
   
@@ -800,4 +806,5 @@ class WmiRootCimv2Class < Nanotek::WmiClassBase
     @classes[:Win32_PerfRawData_XTP] = Nanotek::Wmi_Class.new("Win32_PerfRawData_XTP" ,"root\\cimv2")
 
   end
+end
 end

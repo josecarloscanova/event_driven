@@ -1,5 +1,3 @@
-
-
 class WmiClassServiceTest  < Minitest::Test
   
   def initialize

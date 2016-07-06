@@ -4,11 +4,9 @@ module Nanotek
   
   #  NameSpace: ROOT
   #  
-
-  Wmi_Class = Struct.new(:base_class , :wmi_path)
-  
   class WmiRootClasses < Nanotek::WmiClassBase
-    attr_reader(:wmi_classes_path)
+    
+    attr_reader(:wmi_classes_path , :classes)
     
     def initialize
       load_wmi_classes

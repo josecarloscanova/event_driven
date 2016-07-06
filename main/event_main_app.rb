@@ -13,8 +13,6 @@ module Nanotek
           build_application_context
       end
       
-      WebApplicationContext.configure_application_context
-      
       def  build_application_context
             load_wmi_context
       end
