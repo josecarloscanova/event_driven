@@ -14,20 +14,23 @@ class WmiClassFilter
   end  
   
   def WmiClassFilter.parse_class *line 
-      unless line[0].nil? then
-          lines = line.flatten[0].split("\n")
-          lines = lines[5..lines.length()-2]
-          puts "Line on pippeline #{lines}"
-          filter_property_lines lines
-      end      
+          lines = line.flatten[0].split("\n") unless line[0].nil?
+          unless lines.nil? then
+              lines = lines[5..lines.length()-2]
+              puts "Line on pippeline #{lines}"
+              filter_property_lines lines
+          end
   end
   
   def WmiClassFilter.filter_property_lines lines
     properties = Array.new
-      lines.each do |line| 
-            property_name =  line.split("\\")[0].chomp.downcase.split("\s")[0]
-            properties.push(@@property_struct.new(property_name))
-      end  if lines.is_a?Array
+    if lines.is_a?Array then 
+        lines.each do |line| 
+              property_name =  line.split("\\")[0].chomp.downcase.split("\s")[0] unless line[0].nil?
+              __A = Struct.new(:with)
+              properties.push(__A.new(property_name))
+        end 
+      end   
     properties
   end  
   
