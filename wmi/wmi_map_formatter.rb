@@ -4,6 +4,7 @@ require 'fcntl'
 require 'yaml'
 require 'yaml/store'
 require_relative 'wmi_class_filter'
+require_relative 'wmi_service'
 require_relative './classes/wmi_root_cimv2_classes'
 require_relative './classes/wmi_root_classes'
 
@@ -357,7 +358,7 @@ class WmiProviderPathFormatter
               end  
               
               def generate_class_files
-                wmf = WmiClassFormatter.new ["__ACE" ,"ROOT\\StandardCimv2"]
+                wmf = WmiClassFormatter.new ["__SystemClass" ,"ROOT\\CIMV2"]
                 wmf_cd = wmf.cd if wmf.filter_shell_command
                 puts wmf_cd.to_yaml               
                 yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd
@@ -516,7 +517,15 @@ class WmiClassFormatter
   class ClassLoader
     
     def initialize
-              YAML.load("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_SystemBIOS.yml") 
+            @cd = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_SystemBIOS.yml")) 
+            cd_i = @cd.values[0]
+            get_class_definition_from_service cd_i
+    end  
+    
+    def get_class_definition_from_service cd_i
+       wmi =  WmiService.new({:service => cd_i.name , :location => cd_i.path})
+       instances = wmi.instances_of(cd_i.name)
+       puts instances
     end  
       
   end  
@@ -548,7 +557,6 @@ class WmiClassFormatter
         end
         
         def serialize
-#          attr_reader(:name , :path , :properties)
           store = YAML::Store.new "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/#{@class_definition.name}.yml"
           store.transaction do
             store[@class_definition.name] = @class_definition

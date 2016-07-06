@@ -1,8 +1,8 @@
-class NetworkAdapterFactory
+class NetworkAdapterFactory < WmiClassFactory
   
   #<struct bootdevice=nil, buildnumber=nil, buildtype=nil, caption="[00000001] Qualcomm Atheros AR9485 Wireless Network Adapter", codeset=nil, countrycode=nil, creationclassname="Win32_NetworkAdapter", cscreationclassname=nil, csdversion=nil>
-  
-  def initialize
+#  Win32_NetworkAdapter.yml
+    def initialize
     end
       
     def NetworkAdapterFactory.get_empty_process_record

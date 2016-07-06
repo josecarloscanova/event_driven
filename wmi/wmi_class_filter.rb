@@ -3,9 +3,6 @@ class WmiClassFilter
   def initialize
   end
 
-  def filter line  
-  end
-  
   def WmiClassFilter.parse_class_name *line 
       wmi_path = line[0].lstrip.rstrip.chomp.split("\n")[0].split("#").last.split("\\")
       class_name = wmi_path.last
