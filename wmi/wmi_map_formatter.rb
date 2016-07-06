@@ -357,7 +357,7 @@ class WmiProviderPathFormatter
               end  
               
               def generate_class_files
-                wmf = WmiClassFormatter.new ["Win32_SystemDriver" ,"ROOT\\cimv2"]
+                wmf = WmiClassFormatter.new ["__ACE" ,"ROOT\\StandardCimv2"]
                 wmf_cd = wmf.cd if wmf.filter_shell_command
                 puts wmf_cd.to_yaml               
                 yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd
@@ -513,6 +513,14 @@ class WmiClassFormatter
       end
   end 
   
+  class ClassLoader
+    
+    def initialize
+              YAML.load("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_SystemBIOS.yml") 
+    end  
+      
+  end  
+  
   class ClassDefinition
         
         attr_reader(:name , :path , :properties)
@@ -553,8 +561,8 @@ class WmiClassFormatter
 
         
 end
-Nanotek::WmiCIM_Scanner.new
-
+#Nanotek::WmiCIM_Scanner.new
+Nanotek::ClassLoader.new
 #TypeName: System.Management.ManagementObject#root\cimv2\Win32_USBHub
 #
 #Name                        MemberType Definition                                     
