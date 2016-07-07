@@ -8,7 +8,8 @@ class WmiServiceConfiguratorTest < Minitest::Test
     end
 
     def test_wmi_provider_path_search
-      wpp = WmiServiceConfigurator.new
+      wsp = Nanotek::WmiServiceConfigurator.new
+      puts  wsp.find_wmi_configuration 'ROOT'
     end
   
 end
