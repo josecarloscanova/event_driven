@@ -14,9 +14,9 @@ module Nanotek
     #  WmiServiceConfigurator
       def test_system_32
         class_loaded = YamlUnMarshaller.new.unmarshall
-        wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_SystemBIOS"])
-        wmi_service = Nanotek::WmiService.new({:service => class_loaded["Win32_SystemBIOS"].name , location => class_loaded["Win32_SystemBIOS"].path})
-        result =  wmi_service.get_instances_of({:class => class_loaded["Win32_SystemBIOS"].name , :wcf => wcf})
+        wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_SystemDriver"])
+        wmi_service = Nanotek::WmiService.new({:service => class_loaded["Win32_SystemDriver"].name , location => class_loaded["Win32_SystemDriver"].path})
+        result =  wmi_service.get_instances_of({:class => class_loaded["Win32_SystemDriver"].name , :wcf => wcf})
         puts result.flatten.select {|k| !k[0].nil?}
         end
       
@@ -33,7 +33,7 @@ module Nanotek
           
           def unmarshall
             parser = Psych::Parser.new
-            @@class_loaded = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_SystemBIOS.yml"))
+            @@class_loaded = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_SystemDriver.yml"))
           end  
           
           

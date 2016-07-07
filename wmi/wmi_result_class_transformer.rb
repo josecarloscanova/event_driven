@@ -6,7 +6,7 @@ module Nanotek
     end  
   end
   
-  class WmiResultClassTransformer < Nanotek::Transformer
+  class  WmiResultClassTransformer < Nanotek::Transformer
   
   def initialize args
     @parameters =  args
@@ -16,20 +16,24 @@ module Nanotek
     @result = Array.new
     wcf = @parameters[:wcf]
     instances = @parameters[:result]
-    instances.each do |arg| 
-      @result.push(transform([wcf , arg])) 
+    instances.each do |instance| 
+      @result.push(transform({:wcf => wcf , :instance => instance})) 
     end 
    @result
   end
   
   #A simple base class transform
   def transform args
-      operator = args[0].create_instance
-      operator.properties.each do |v| 
-          v.with = args[1][v.with]  unless v.nil? || v.with.nil?
+      operator = args[:wcf].create_instance
+      operator.properties.each do |property| 
+        val = check_value property , args[:instance]
+        p " #{operator.class_name} #{property} #{val}"
+#        property.with = args[:instance][property.with] 
       end
   end  
   
+  def check_value property , instance
+    "#{instance[property.with]}" unless property.nil? || property.with.nil?
   end
-
+end
 end  
