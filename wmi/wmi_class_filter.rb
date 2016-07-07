@@ -1,4 +1,5 @@
-class WmiClassFilter
+require_relative '../filter/filter.rb'
+class WmiClassFilter < Filter
   
   def initialize
   end

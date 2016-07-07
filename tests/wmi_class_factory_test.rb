@@ -20,9 +20,7 @@ class WmiClassFactoryTest < Minitest::Test
       cc.properties = properties
       
       wmicf = Nanotek::WmiClassFactory.new cc
-      wmicf.create_process_class
-      
-      puts wmicf.process_class.to_h.to_s
+      puts wmicf.create_instance.to_h.to_s
     end
     
     

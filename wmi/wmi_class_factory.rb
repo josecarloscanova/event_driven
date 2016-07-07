@@ -6,7 +6,6 @@ module Nanotek
     
             def initialize *args
               cc = args.flatten[0] unless args[0].nil?
-#              raise ArgumentError , "Invalid parameters for configuration " unless cc.nil?
               with_properties(with_root_path(with_class_name(cc)))
             end
             
@@ -37,9 +36,9 @@ module Nanotek
                     @sym_array = Array.new
                     @class_properties.select {|k|
                       case 
-                      when (k.nil? && k.with.nil?) == false then 
-                            @sym_array.push(k) 
-                      end
+                          when (k.nil? && k.with.nil?) == false then 
+                                @sym_array.push(k) 
+                          end
                     }
             end  
     

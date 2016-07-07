@@ -7,9 +7,10 @@ require_relative 'wmi_class_filter'
 require_relative 'wmi_service'
 require_relative './classes/wmi_root_cimv2_classes'
 require_relative './classes/wmi_root_classes'
+require_relative 'wmi_class_definition'
+
 
 module Nanotek
-  
   
   class WmiRootFileFormatter
       include FileUtils
@@ -349,7 +350,20 @@ class WmiProviderPathFormatter
   end  
 
 
-
+    class WmiWin32_USBController_Scanner
+            def initialize
+              @cim_v2_classes = Nanotek::WmiRootClasses.new
+              generate_class_files
+            end  
+            
+            def generate_class_files
+              wmf = WmiClassFormatter.new ["Win32_USBController" ,"ROOT\\CIMV2"]
+              wmf_cd = wmf.cd if wmf.filter_shell_command
+              puts wmf_cd.to_yaml               
+              yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd
+              yaml_serialzier.serialize 
+            end  
+      end
   
       class WmiCIM_Scanner
               def initialize
@@ -410,6 +424,39 @@ class WmiProviderPathFormatter
             yaml_serialzier.serialize wmf_cd
           end  
     end
+
+    class WmiWin32_BIOS
+          def initialize
+            @cim_v2_classes = Nanotek::WmiRootClasses.new
+            generate_class_files
+          end  
+          
+          def generate_class_files 
+              wmc = Nanotek::WmiRootCimv2Class.new.find_wmi_class :Win32_BIOS
+              wmf =  WmiClassFormatter.new [wmc[wmc.keys[0]].base_class ,wmc[wmc.keys[0]].wmi_path]
+              wmf_cd = wmf.cd if wmf.filter_shell_command
+              puts wmf_cd.to_s
+              yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd
+              yaml_serialzier.serialize
+          end  
+    end
+    
+    
+    class WmiWin32_OperatingSystem
+          def initialize
+            @cim_v2_classes = Nanotek::WmiRootClasses.new
+            generate_class_files
+          end  
+          
+          def generate_class_files 
+              wmc = Nanotek::WmiRootCimv2Class.new.find_wmi_class :Win32_OperatingSystem
+              wmf =  WmiClassFormatter.new [wmc[wmc.keys[0]].base_class ,wmc[wmc.keys[0]].wmi_path]
+              wmf_cd = wmf.cd if wmf.filter_shell_command
+              puts wmf_cd.to_s
+              yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd
+              yaml_serialzier.serialize
+          end  
+    end
     
     class WmiWin32ServiceScanner
           def initialize
@@ -419,6 +466,36 @@ class WmiProviderPathFormatter
           
           def generate_class_files
               wmf = WmiClassFormatter.new ["Win32_Service" ,"ROOT\\cimv2"]
+              wmf_cd = wmf.cd if wmf.filter_shell_command
+              puts wmf_cd.to_s
+              yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd
+              yaml_serialzier.serialize
+          end  
+    end
+
+    class WmiWin32_SystemUsersScanner
+          def initialize
+            @cim_v2_classes = Nanotek::WmiRootClasses.new
+            generate_class_files
+          end  
+          
+          def generate_class_files
+              wmf = WmiClassFormatter.new ["Win32_SystemUsers" ,"ROOT\\cimv2"]
+              wmf_cd = wmf.cd if wmf.filter_shell_command
+              puts wmf_cd.to_s
+              yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd
+              yaml_serialzier.serialize
+          end  
+    end    
+        
+    class WmiWin32_ComputerSystemScanner
+          def initialize
+            @cim_v2_classes = Nanotek::WmiRootClasses.new
+            generate_class_files
+          end  
+          
+          def generate_class_files
+              wmf = WmiClassFormatter.new ["Win32_ComputerSystem" ,"ROOT\\cimv2"]
               wmf_cd = wmf.cd if wmf.filter_shell_command
               puts wmf_cd.to_s
               yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd
@@ -495,10 +572,12 @@ class WmiClassFormatter
             result = execute_shell_command @args
             raise  ArgumentError , "Error on Paramter" unless result.is_a?String
             @cd = Nanotek::ClassDefinition.new 
+            @cd.name = @args[0]
+            @cd.path = @args[1]
             result.split("\\n").each do |value|
 #                      puts " the value #{value}"
                       val = value.lstrip.rstrip.chomp
-                      @cd.with_name_path(WmiClassFilter.parse_class_name(val)).with_properties(WmiClassFilter.parse_class(val))
+                      @cd.with_properties(WmiClassFilter.parse_class(val))
 #                      puts "Class Definition : #{@cd.name} #{@cd.path} #{@cd.properties}"  
             end unless result.include?('Get-Member :')
         true
@@ -525,30 +604,9 @@ class WmiClassFormatter
     def get_class_definition_from_service cd_i
        wmi =  WmiService.new({:service => cd_i.name , :location => cd_i.path})
        instances = wmi.instances_of(cd_i.name)
-       puts instances
     end  
       
   end  
-  
-  class ClassDefinition
-        
-        attr_reader(:name , :path , :properties)
-        
-        def initialize 
-        end  
-        
-        def with_name_path hash
-              @name = hash.keys[0]
-              @path = hash.values[0]
-          self
-        end  
-        
-        def with_properties properties
-            @properties = properties
-          self  
-        end
-        
-  end 
   
   class YamlSerializer
     
@@ -557,6 +615,7 @@ class WmiClassFormatter
         end
         
         def serialize
+          puts "writing to #{@class_definition.name}"
           store = YAML::Store.new "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/#{@class_definition.name}.yml"
           store.transaction do
             store[@class_definition.name] = @class_definition
@@ -570,7 +629,7 @@ class WmiClassFormatter
         
 end
 #Nanotek::WmiCIM_Scanner.new
-Nanotek::ClassLoader.new
+Nanotek::WmiWin32_SystemUsersScanner.new
 #TypeName: System.Management.ManagementObject#root\cimv2\Win32_USBHub
 #
 #Name                        MemberType Definition                                     

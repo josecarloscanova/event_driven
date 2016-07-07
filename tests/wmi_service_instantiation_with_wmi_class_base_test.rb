@@ -9,16 +9,16 @@ require_relative '../wmi/network_adapter_factory'
 
 
 class Wmi_service_instantiation_with_wmi_class_base_test < Minitest::Test
-#  Win32_NetworkAdapter
-#  def test_wmi_cimv2_class_base
-#      wmi = WmiRootCimv2Class.new
-#      wmi_class =  wmi.find_wmi_class(:Win32_OperatingSystem)
-#      configuration_factory = wmi_class.values.select{|v| v}
-#      wmi = WmiService.new(with_configuration_factory(configuration_factory))
-#      wmi.instances_of(:Win32_OperatingSystem).each do |os|
-#        puts  OperatingSystemFactory.process_with(os)
-#      end    
-#  end
+
+  def test_wmi_cimv2_class_base
+      wmi = Nanotek::WmiRootCimv2Class.new
+      wmi_class =  wmi.find_wmi_class(:Win32_OperatingSystem)
+      configuration_factory = wmi_class.values.select{|v| v}
+      wmi = Nanotek::WmiService.new(with_configuration_factory(configuration_factory))
+      wmi.instances_of(:Win32_OperatingSystem).each do |os|
+        puts  OperatingSystemFactory.process_with(os)
+      end    
+  end
   
 #    def test_wmi_cimv2_class_base
 #        wmi = WmiRootCimv2Class.new
@@ -30,15 +30,15 @@ class Wmi_service_instantiation_with_wmi_class_base_test < Minitest::Test
 #        end    
 #    end
  
-  def test_wmi_cimv2_class_base
-      wmi = WmiRootCimv2Class.new
-      wmi_class =  wmi.find_wmi_class(:Win32_USBHub)
-      configuration_factory = wmi_class.values.select{|v| v}
-      wmi = WmiService.new(with_configuration_factory(configuration_factory))
-      wmi.instances_of(:Win32_USBHub).each do |os|
-        puts  os.to_s
-      end    
-  end
+#  def test_wmi_cimv2_class_base
+#      wmi = WmiRootCimv2Class.new
+#      wmi_class =  wmi.find_wmi_class(:Win32_USBHub)
+#      configuration_factory = wmi_class.values.select{|v| v}
+#      wmi = WmiService.new(with_configuration_factory(configuration_factory))
+#      wmi.instances_of(:Win32_USBHub).each do |os|
+#        puts  os.to_s
+#      end    
+#  end
   
 #    def test_wmi_process_class_base
 #        wmi = WmiRootCimv2Class.new

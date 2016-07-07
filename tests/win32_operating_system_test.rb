@@ -10,16 +10,15 @@ require_relative '../wmi/wmi_class_factory'
 
 module Nanotek 
 
-    class  Win32SystemServicesTest < Minitest::Test
+    class  Win32OperatingSystemTest < Minitest::Test
     #  WmiServiceConfigurator
       def test_system_32
         class_loaded = YamlUnMarshaller.new.unmarshall
-        wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_UTCTime"])
-        wmi_service = Nanotek::WmiService.new({:service => class_loaded["Win32_UTCTime"].name , location => class_loaded["Win32_UTCTime"].path})
-        win32_system_instances =  wmi_service.instances_of(class_loaded["Win32_UTCTime"].name)
-        result =  wmi_service.get_instances_of({:class => class_loaded["Win32_UTCTime"].name , :wcf => wcf ,  :result => win32_system_instances})
+        wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_OperatingSystem"])
+        wmi_service = Nanotek::WmiService.new({:service => class_loaded["Win32_OperatingSystem"].name , location => class_loaded["Win32_OperatingSystem"].path})
+        result =  wmi_service.get_instances_of({:class => class_loaded["Win32_OperatingSystem"].name , :wcf => wcf})
         puts result.flatten.select {|k| !k[0].nil?}
-      end
+        end
       
     end
 
@@ -34,7 +33,7 @@ module Nanotek
           
           def unmarshall
             parser = Psych::Parser.new
-            @@class_loaded = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_UTCTime.yml"))
+            @@class_loaded = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_OperatingSystem.yml"))
           end  
           
           

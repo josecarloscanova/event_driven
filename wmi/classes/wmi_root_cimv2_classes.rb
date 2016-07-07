@@ -379,7 +379,6 @@ module Nanotek
     @classes[:CIM_VideoSetting] = Nanotek::Wmi_Class.new("CIM_VideoSetting" ,"ROOT\\cimv2")
     @classes[:Win32_VideoSettings] = Nanotek::Wmi_Class.new("Win32_VideoSettings" ,"ROOT\\cimv2")
     @classes[:Win32_SecuritySetting] = Nanotek::Wmi_Class.new("Win32_SecuritySetting" ,"ROOT\\cimv2")
-    @classes[:Win32_OperatingSystem] = Nanotek::Wmi_Class.new("Win32_OperatingSystem" ,"ROOT\\cimv2")
     @classes[:Win32_RoamingProfileU] = Nanotek::Wmi_Class.new("Win32_RoamingProfileU" ,"ROOT\\cimv2")
     @classes[:Win32_VolumeUserQuota] = Nanotek::Wmi_Class.new("Win32_VolumeUserQuota" ,"ROOT\\cimv2")
     @classes[:Win32_LUID] = Nanotek::Wmi_Class.new("Win32_LUID" ,"ROOT\\cimv2")

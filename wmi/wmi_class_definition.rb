@@ -1,7 +1,7 @@
 module Nanotek
       class ClassDefinition
             
-            attr_reader(:name , :path , :properties)
+            attr_accessor(:name , :path , :properties)
             
             def initialize 
             end  

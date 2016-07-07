@@ -24,16 +24,21 @@ module Nanotek
   
   #A simple base class transform
   def transform args
-      operator = args[:wcf].create_instance
-      operator.properties.each do |property| 
-        val = check_value property , args[:instance]
-        p " #{operator.class_name} #{property} #{val}"
-#        property.with = args[:instance][property.with] 
-      end
+        instance_class = Struct.new(:name, :properties)
+        name_value_pair = Struct.new(:name , :value)
+        instance = instance_class.new
+        operator = args[:wcf].create_instance
+        instance.name = operator.class_name
+        instance.properties = Array.new
+        operator.properties.each do |property| 
+          val = check_value property , args[:instance]
+          instance.properties.push(name_value_pair.new(property.with  , val))
+        end
+      return instance
   end  
   
   def check_value property , instance
-    "#{instance[property.with]}" unless property.nil? || property.with.nil?
+    instance[property.with] unless property.nil? || property.with.nil?
   end
 end
 end  
