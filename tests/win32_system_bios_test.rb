@@ -20,7 +20,7 @@ module Nanotek
       def test_system_32
               wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_SystemBIOS"])
               wmi_service = Nanotek::WmiService.new({:service => class_loaded["Win32_SystemBIOS"].name , location => class_loaded["Win32_SystemBIOS"].path})
-              wmi_service.get_instances_of({:class => class_loaded["Win32_SystemBIOS"].name , :wcf => wcf})
+              wmi_service.get_instances
         end
       
     end

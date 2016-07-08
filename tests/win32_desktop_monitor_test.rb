@@ -21,7 +21,7 @@ module Nanotek
         wcf = Nanotek::WmiClassFactory.new($class_loaded["Win32_DesktopMonitor"])
         wmi_service = Nanotek::WmiService.new(wcf)
         #depois tem outro ceu sem estrelas...
-        wmi_service.get_instances_of({})
+        wmi_service.get_instances
         end
       
     end

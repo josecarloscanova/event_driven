@@ -17,8 +17,8 @@ module Nanotek
     #  WmiServiceConfigurator
       def test_system_32
           wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_USBHub"])
-          wmi_service = Nanotek::WmiService.new({:service => class_loaded["Win32_USBHub"].name , location => class_loaded["Win32_USBHub"].path})
-          wmi_service.get_instances_of({:class => class_loaded["Win32_USBHub"].name , :wcf => wcf ,  :result => win32_system_instances})
+          wmi_service = Nanotek::WmiService.new(wcf)
+          wmi_service.get_instances
         end
       
     end

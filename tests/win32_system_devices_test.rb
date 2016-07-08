@@ -18,8 +18,8 @@ module Nanotek
     #  WmiServiceConfigurator
       def test_system_32
         wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_SystemDevices"])
-        wmi_service = Nanotek::WmiService.new({:service => class_loaded["Win32_SystemDevices"].name , location => class_loaded["Win32_SystemDevices"].path})
-        wmi_service.get_instances_of({:class => class_loaded["Win32_SystemDevices"].name , :wcf => wcf})
+        wmi_service = Nanotek::WmiService.new(wcf)
+        wmi_service.get_instances
         end
       
     end
