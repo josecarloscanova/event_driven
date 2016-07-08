@@ -11,16 +11,20 @@ module Nanotek
   #TODO: Check de formatter on the end of the transformation. or on loop
   class  WmiResultClassTransformer < Nanotek::Transformer
   
-  def initialize args
-    @parameters =  args
+  def initialize
   end
   
-  def prepare_result
+  
+  def with_class_factory wcf
+    @wcf = wcf
+   self 
+  end
+    
+  def prepare_results(results)
     @result = Array.new
-    wcf = @parameters[:wcf]
-    instances = @parameters[:result]
+    instances = results
     instances.each do |instance| 
-      @result.push(transform({:wcf => wcf , :instance => instance})) 
+      @result.push(transform({:wcf => @wcf , :instance => instance})) 
     end 
    @result
   end
