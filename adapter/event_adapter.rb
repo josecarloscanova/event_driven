@@ -12,10 +12,6 @@ class EventAdapter < Adapter
            raise_default_event message
         end
         
-        def raise_default_event message
-          DefaultEvent.new(message)
-        end
-        
         def add_adapter *args
             adaptee = verify_if args
             @messages_adapter.push(adaptee) if adaptee[:class].is_a?Event.class

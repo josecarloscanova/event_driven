@@ -11,13 +11,17 @@ require_relative '../wmi/wmi_class_factory'
 module Nanotek 
 
     class  Win32OperatingSystemTest < Minitest::Test
+      
+      def setup
+        YamlUnMarshaller.unmarshall
+      end  
+      
     #  WmiServiceConfigurator
       def test_system_32
-        class_loaded = YamlUnMarshaller.new.unmarshall
-        wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_DesktopMonitor"])
-        wmi_service = Nanotek::WmiService.new({:service => class_loaded["Win32_DesktopMonitor"].name , location => class_loaded["Win32_DesktopMonitor"].path})
-        result =  wmi_service.get_instances_of({:class => class_loaded["Win32_DesktopMonitor"].name , :wcf => wcf})
-        puts result.flatten.select {|k| !k[0].nil?}
+        wcf = Nanotek::WmiClassFactory.new($class_loaded["Win32_DesktopMonitor"])
+        wmi_service = Nanotek::WmiService.new(wcf)
+        #depois tem outro ceu sem estrelas...
+        wmi_service.get_instances_of({})
         end
       
     end
@@ -25,15 +29,8 @@ module Nanotek
     
     class YamlUnMarshaller
       
-      
-        attr_reader(:class_loaded)
-      
-          def initialize 
-          end
-          
-          def unmarshall
-            parser = Psych::Parser.new
-            @@class_loaded = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_DesktopMonitor.yml"))
+          def YamlUnMarshaller.unmarshall
+            $class_loaded = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_DesktopMonitor.yml"))
           end  
           
           

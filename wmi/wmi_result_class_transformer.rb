@@ -1,3 +1,5 @@
+require_relative '../filter/nil_filter'
+
 module Nanotek 
   
   class Transformer
@@ -6,6 +8,7 @@ module Nanotek
     end  
   end
   
+  #TODO: Check de formatter on the end of the transformation. or on loop
   class  WmiResultClassTransformer < Nanotek::Transformer
   
   def initialize args
@@ -32,7 +35,7 @@ module Nanotek
         instance.properties = Array.new
         operator.properties.each do |property| 
           val = check_value property , args[:instance]
-          instance.properties.push(name_value_pair.new(property.with  , val))
+          instance.properties.push(name_value_pair.new(property.with  , val)) unless Nanotek::NilFilter.accept(val)
         end
       return instance
   end  

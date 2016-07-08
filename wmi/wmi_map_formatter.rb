@@ -7,6 +7,7 @@ require_relative 'wmi_class_filter'
 require_relative 'wmi_service'
 require_relative './classes/wmi_root_cimv2_classes'
 require_relative './classes/wmi_root_classes'
+require_relative '../filter/nil_filter'
 require_relative 'wmi_class_definition'
 
 
@@ -350,6 +351,71 @@ class WmiProviderPathFormatter
   end  
 
 
+    class Wmi2Win32_SystemResources_Scanner
+          def initialize
+            @cim_v2_classes = Nanotek::WmiRootClasses.new
+            generate_class_files
+          end  
+          
+          def generate_class_files
+            wmf = WmiClassFormatter.new ["Win32_SystemResources" ,"ROOT\\cimv2"]
+            wmf_cd = wmf.cd if wmf.filter_shell_command
+            puts wmf_cd.to_yaml               
+            yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/"
+            yaml_serialzier.serialize 
+          end  
+    end 
+
+  
+    class Wmi2_SystemSlot_Scanner
+          def initialize
+            @cim_v2_classes = Nanotek::WmiRootClasses.new
+            generate_class_files
+          end  
+          
+          def generate_class_files
+            wmf = WmiClassFormatter.new ["Win32_SystemSlot" ,"ROOT\\cimv2"]
+            wmf_cd = wmf.cd if wmf.filter_shell_command
+            puts wmf_cd.to_yaml               
+            yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/"
+            yaml_serialzier.serialize 
+          end  
+    end  
+
+  #FAIL
+      class Wmi__TimerInstruction_Scanner
+            def initialize
+              @cim_v2_classes = Nanotek::WmiRootClasses.new
+              generate_class_files
+            end  
+            
+            def generate_class_files
+              wmf = WmiClassFormatter.new ["__TimerInstruction" ,"ROOT\\RSOP"]
+              wmf_cd = wmf.cd if wmf.filter_shell_command
+              puts wmf_cd.to_yaml               
+              yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/rsop/"
+              yaml_serialzier.serialize 
+            end  
+      end  
+
+
+    class Wmi__Win32Provider_DEFAULT_Scanner
+          def initialize
+            @cim_v2_classes = Nanotek::WmiRootClasses.new
+            generate_class_files
+          end  
+          
+          def generate_class_files
+            wmf = WmiClassFormatter.new ["__Win32Provider" ,"ROOT\\DEFAULT"]
+            wmf_cd = wmf.cd if wmf.filter_shell_command
+            puts wmf_cd.to_yaml               
+            yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/default/"
+            yaml_serialzier.serialize 
+          end  
+    end  
+  
+  
+  
     class WmiWin32_USBController_Scanner
             def initialize
               @cim_v2_classes = Nanotek::WmiRootClasses.new
@@ -612,11 +678,12 @@ class WmiClassFormatter
     
         def initialize *args
           @class_definition = args[0]
+          @path = Nanotek::NilFilter.accept(args[1]) ? "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/" : args[1]
         end
         
         def serialize
-          puts "writing to #{@class_definition.name}"
-          store = YAML::Store.new "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/#{@class_definition.name}.yml"
+          puts  "#{@class_definition.name}"
+          store = YAML::Store.new "#{@path}#{@class_definition.name}.yml"
           store.transaction do
             store[@class_definition.name] = @class_definition
           end
@@ -629,7 +696,7 @@ class WmiClassFormatter
         
 end
 #Nanotek::WmiCIM_Scanner.new
-Nanotek::WmiWin32_SystemUsersScanner.new
+Nanotek::Wmi2Win32_SystemResources_Scanner.new
 #TypeName: System.Management.ManagementObject#root\cimv2\Win32_USBHub
 #
 #Name                        MemberType Definition                                     

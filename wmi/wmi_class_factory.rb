@@ -1,16 +1,19 @@
+require_relative '../filter/nil_with_filter'
 require_relative '../base/base_class_factory'
 
 module Nanotek
 
   class WmiClassFactory < BaseClassFactory
     
+            attr_reader(:class_name , :properties , :path)  
+              
             def initialize *args
               cc = args.flatten[0] unless args[0].nil?
               with_properties(with_root_path(with_class_name(cc)))
             end
             
             def create_instance
-                Struct.new(:class_name , :properties).new(@class_name , @sym_array)
+                Struct.new(:class_name , :properties , :path).new(@class_name , @properties ,@path)
             end  
             
             private 
@@ -28,19 +31,13 @@ module Nanotek
                 end
                 
                 def with_properties configuration_class
-                  @class_properties = configuration_class.properties if  configuration_class.respond_to?'properties'
-                  create_process_class unless @class_properties.nil? 
+                  @properties = configuration_class.properties if  configuration_class.respond_to?'properties'
+                  @properties.reject {|property|
+                     property if Nanotek::NilWithFilter.accept(property) 
+                  } 
+                  raise ArgumentError , "Class not well formed, no properties found." if @properties.nil?
                 end  
                 
-                def create_process_class
-                    @sym_array = Array.new
-                    @class_properties.select {|k|
-                      case 
-                          when (k.nil? && k.with.nil?) == false then 
-                                @sym_array.push(k) 
-                          end
-                    }
-            end  
     
   end
 
