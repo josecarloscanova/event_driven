@@ -13,10 +13,11 @@ module Nanotek
     class  Win32SystemServicesTest < Minitest::Test
       
       def  setup 
+        YamlUnMarshaller.unmarshall
       end
     #  WmiServiceConfigurator
       def test_system_32
-          wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_USBHub"])
+          wcf = Nanotek::WmiClassFactory.new($class_loaded["Win32_USBHub"])
           wmi_service = Nanotek::WmiService.new(wcf)
           wmi_service.get_instances
         end
@@ -25,11 +26,9 @@ module Nanotek
 
     
     class YamlUnMarshaller
-          def unmarshall
+          def YamlUnMarshaller.unmarshall
               $class_loaded = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_USBHub.yml"))
           end  
-          
-          
     end  
     
 end

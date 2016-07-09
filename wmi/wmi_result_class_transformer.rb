@@ -25,7 +25,7 @@ module Nanotek
     instances = results
     instances.each do |instance| 
       @result.push(transform({:wcf => @wcf , :instance => instance})) 
-    end 
+    end unless instances.nil?
    @result
   end
   
@@ -39,7 +39,7 @@ module Nanotek
         instance.properties = Array.new
         operator.properties.each do |property| 
           val = check_value property , args[:instance]
-          instance.properties.push(name_value_pair.new(property.with  , val)) unless Nanotek::NilFilter.accept(val)
+          instance.properties.push(name_value_pair.new(property.with  , val)) if Nanotek::NilFilter.accept(val) == true
         end
       return instance
   end  

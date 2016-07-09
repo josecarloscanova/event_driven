@@ -18,7 +18,7 @@ module Nanotek
        
     #  WmiServiceConfigurator
       def test_system_32
-          wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_SystemServices"])
+          wcf = Nanotek::WmiClassFactory.new($class_loaded["Win32_SystemServices"])
           wmi_service = Nanotek::WmiService.new(wcf)
           wmi_service.get_instances
       end
@@ -28,7 +28,7 @@ module Nanotek
     
     class YamlUnMarshaller
       
-          def unmarshall
+          def YamlUnMarshaller.unmarshall
             $class_loaded = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_SystemServices.yml"))
           end  
           

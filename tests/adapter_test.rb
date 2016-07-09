@@ -6,7 +6,7 @@ class AdapterTest < Minitest::Test
   
       def setup
       end
-  
+
       def test_generate_message
         @adapter = Adapter.new
         @adapter.add_adapter 'event' , ComposedMessageEvent
@@ -14,7 +14,7 @@ class AdapterTest < Minitest::Test
         @adapter.send_message 'message_event'
         @adapter.send_message({:e => 'message_event_1'})
       end
-      
+
        def test_generate_message_1
            @adapter = Adapter.new
            @adapter.add_adapter nil

@@ -1,12 +1,13 @@
 require 'yaml'
 require 'psych'
 require 'minitest/autorun'
-require_relative '../wmi/wmi_class_definition'
 require_relative '../wmi/wmi_service'
+require_relative '../wmi/wmi_class_factory'
+require_relative '../wmi/wmi_class_definition'
 require_relative '../wmi/wmi_service_configurator'
 require_relative '../wmi/wmi_configuration_factory'
 require_relative '../wmi/wmi_result_class_transformer'
-require_relative '../wmi/wmi_class_factory'
+require_relative '../decorator/wmi_class_definition_instance_hash_decorator'
 
 module Nanotek 
 
@@ -21,7 +22,10 @@ module Nanotek
         wcf = Nanotek::WmiClassFactory.new($class_loaded["Win32_DesktopMonitor"])
         wmi_service = Nanotek::WmiService.new(wcf)
         #depois tem outro ceu sem estrelas...
-        wmi_service.get_instances
+          wmi_service.get_instances.each do |instance|
+            result_hash = WmiClassDefinitionInstanceHashDecorator.new.convertible?(wmi_service.get_instances).instance_hash
+            puts result_hash
+          end
         end
       
     end

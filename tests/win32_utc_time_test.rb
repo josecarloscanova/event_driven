@@ -26,12 +26,9 @@ module Nanotek
 
     
     class YamlUnMarshaller
-      
           def YamlUnMarshaller.unmarshall
               $class_loaded = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_UTCTime.yml"))
           end  
-          
-          
     end  
     
 end

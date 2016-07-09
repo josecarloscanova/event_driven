@@ -17,7 +17,7 @@ module Nanotek
       end 
     #  WmiServiceConfigurator
       def test_system_32
-        wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_USBController"])
+        wcf = Nanotek::WmiClassFactory.new($class_loaded["Win32_USBController"])
         wmi_service = Nanotek::WmiService.new(wcf)
         result =  wmi_service.get_instances
       end

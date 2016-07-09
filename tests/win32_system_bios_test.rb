@@ -18,8 +18,8 @@ module Nanotek
       
     #  WmiServiceConfigurator
       def test_system_32
-              wcf = Nanotek::WmiClassFactory.new(class_loaded["Win32_SystemBIOS"])
-              wmi_service = Nanotek::WmiService.new({:service => class_loaded["Win32_SystemBIOS"].name , location => class_loaded["Win32_SystemBIOS"].path})
+              wcf = Nanotek::WmiClassFactory.new($class_loaded["Win32_SystemBIOS"])
+              wmi_service = Nanotek::WmiService.new(wcf)
               wmi_service.get_instances
         end
       
