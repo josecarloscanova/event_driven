@@ -21,9 +21,9 @@ module Nanotek
           wcf = Nanotek::WmiClassFactory.new($class_loaded["Win32_NetworkAdapter"])
           wmi_service = Nanotek::WmiService.new(wcf)
           wmi_service.get_instances.each do |instance|
-            result_hash = WmiClassDefinitionInstanceHashDecorator.new.convertible?(wmi_service.get_instances).instance_hash
-            puts result_hash
+            @result_hash = WmiClassDefinitionInstanceHashDecorator.new.convertible?(instance).instance_hash
           end
+        puts result_hash
         end
       
     end

@@ -25,7 +25,6 @@ module Nanotek
         wmi_service.get_instances.each do |instance|
           result_hash.push(WmiClassDefinitionInstanceHashDecorator.new.convertible?(instance).instance_hash)
         end
-        puts result_hash
       end
 #      WmiClassDefinitionInstanceHashDecorator.new.convertible?(wmi_service.get_instances).instance_hash
     end

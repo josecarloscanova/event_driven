@@ -37,7 +37,6 @@ module Nanotek
             $class_loaded = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_DesktopMonitor.yml"))
           end  
           
-          
     end  
     
 end
