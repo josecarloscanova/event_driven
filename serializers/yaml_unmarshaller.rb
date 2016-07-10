@@ -21,7 +21,7 @@ module Nanotek
                pn = Pathname.new(args[0])
                raise ArgumentException , "Not a valid directory" unless pn.directory?
                mount_path_base_structure args
-          end  
+          end
            
           def YamlUnMarshaller.mount_path_base_structure args
             return @@path_file.new(args[0] , args[1])

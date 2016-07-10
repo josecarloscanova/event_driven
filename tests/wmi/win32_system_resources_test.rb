@@ -11,12 +11,12 @@ require_relative '../../decorator/wmi_class_definition_instance_hash_decorator'
 module Nanotek 
 
     MODEL_PATH = "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/"
-    BIOS_FILE = "Win32_SystemResources.yml"   
+    SRESOURCES_FILE = "Win32_SystemResources.yml"   
   
    class  Win32SystemSlotTest < Minitest::Test
     #  WmiServiceConfigurator
       def setup
-          YamlUnMarshaller.unmarshall([MODEL_PATH , BIOS_FILE])
+          YamlUnMarshaller.unmarshall([MODEL_PATH , SRESOURCES_FILE])
       end
           
       def test_system_32
