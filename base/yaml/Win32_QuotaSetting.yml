@@ -1,0 +1,39 @@
+---
+Win32_QuotaSetting: !ruby/object:Nanotek::ClassDefinition
+  name: Win32_QuotaSetting
+  path: ROOT\cimv2
+  properties:
+  - !ruby/struct
+    with: defaultlimit
+  - !ruby/struct
+    with: defaultwarninglimit
+  - !ruby/struct
+    with: description
+  - !ruby/struct
+    with: exceedednotification
+  - !ruby/struct
+    with: settingid
+  - !ruby/struct
+    with: state
+  - !ruby/struct
+    with: volumepath
+  - !ruby/struct
+    with: warningexceedednotification
+  - !ruby/struct
+    with: __class
+  - !ruby/struct
+    with: __derivation
+  - !ruby/struct
+    with: __dynasty
+  - !ruby/struct
+    with: __genus
+  - !ruby/struct
+    with: __namespace
+  - !ruby/struct
+    with: __path
+  - !ruby/struct
+    with: __property_count
+  - !ruby/struct
+    with: __relpath
+  - !ruby/struct
+    with: __server

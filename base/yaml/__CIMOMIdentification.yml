@@ -1,0 +1,29 @@
+---
+__CIMOMIdentification: !ruby/object:Nanotek::ClassDefinition
+  name: __CIMOMIdentification
+  path: ROOT
+  properties:
+  - !ruby/struct
+    with: versioncurrentlyrunning
+  - !ruby/struct
+    with: versionusedtocreatedb
+  - !ruby/struct
+    with: workingdirectory
+  - !ruby/struct
+    with: __class
+  - !ruby/struct
+    with: __derivation
+  - !ruby/struct
+    with: __dynasty
+  - !ruby/struct
+    with: __genus
+  - !ruby/struct
+    with: __namespace
+  - !ruby/struct
+    with: __path
+  - !ruby/struct
+    with: __property_count
+  - !ruby/struct
+    with: __relpath
+  - !ruby/struct
+    with: __server

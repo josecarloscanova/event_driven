@@ -1,0 +1,23 @@
+---
+__EventSinkCacheControl: !ruby/object:Nanotek::ClassDefinition
+  name: __EventSinkCacheControl
+  path: ROOT
+  properties:
+  - !ruby/struct
+    with: __class
+  - !ruby/struct
+    with: __derivation
+  - !ruby/struct
+    with: __dynasty
+  - !ruby/struct
+    with: __genus
+  - !ruby/struct
+    with: __namespace
+  - !ruby/struct
+    with: __path
+  - !ruby/struct
+    with: __property_count
+  - !ruby/struct
+    with: __relpath
+  - !ruby/struct
+    with: __server

@@ -1,0 +1,31 @@
+---
+Win32_PatchPackage: !ruby/object:Nanotek::ClassDefinition
+  name: Win32_PatchPackage
+  path: ROOT\cimv2
+  properties:
+  - !ruby/struct
+    with: description
+  - !ruby/struct
+    with: patchid
+  - !ruby/struct
+    with: productcode
+  - !ruby/struct
+    with: settingid
+  - !ruby/struct
+    with: __class
+  - !ruby/struct
+    with: __derivation
+  - !ruby/struct
+    with: __dynasty
+  - !ruby/struct
+    with: __genus
+  - !ruby/struct
+    with: __namespace
+  - !ruby/struct
+    with: __path
+  - !ruby/struct
+    with: __property_count
+  - !ruby/struct
+    with: __relpath
+  - !ruby/struct
+    with: __server
