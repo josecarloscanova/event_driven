@@ -4,7 +4,8 @@ require 'pathname'
 module Nanotek
 
   
-#  "TODO: FIX THE FILE NAME TO PUT ON THE CLASS LOADER
+#TODO: FIX THE FILE NAME TO PUT ON THE CLASS LOADER
+#TODO Create a key mechanism for the class loader.  
   class YamlDeserializer
 
         def YamlDeserializer.deserialize args
