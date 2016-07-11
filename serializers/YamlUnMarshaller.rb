@@ -21,8 +21,8 @@ module Nanotek
         def validate_path  args
              pn = Pathname.new(args[0])
              raise ArgumentException , "Not a valid directory" unless pn.directory?
-        end  
-         
+        end
+
         def check_if_file_exists
           true
         end  

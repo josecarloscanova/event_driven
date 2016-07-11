@@ -17,7 +17,7 @@ module Nanotek
         YamlUnMarshaller.unmarshall
       end   
       
-    #  WmiServiceConfigurator
+#  WmiServiceConfigurator
       def test_system_32
         result_hash = Array.new
         wcf = Nanotek::WmiClassFactory.new($class_loaded["Win32_BIOS"])
@@ -26,7 +26,7 @@ module Nanotek
           result_hash.push(WmiClassDefinitionInstanceHashDecorator.new.convertible?(instance).instance_hash)
         end
       end
-#      WmiClassDefinitionInstanceHashDecorator.new.convertible?(wmi_service.get_instances).instance_hash
+#WmiClassDefinitionInstanceHashDecorator.new.convertible?(wmi_service.get_instances).instance_hash
     end
 
     class YamlUnMarshaller

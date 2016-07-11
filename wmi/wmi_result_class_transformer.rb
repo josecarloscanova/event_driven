@@ -1,16 +1,17 @@
 require_relative '../filter/nil_filter'
+require_relative '../filter/nil_with_filter'
 
 module Nanotek 
-  
+
   class Transformer
     def transform 
         false
-    end  
+    end
   end
-  
+
   #TODO: Check de formatter on the end of the transformation. or on loop
   class  WmiResultClassTransformer < Nanotek::Transformer
-  
+
   def initialize
   end
   
@@ -45,7 +46,8 @@ module Nanotek
   end  
   
   def check_value property , instance
-    instance[property.with] unless property.nil? || property.with.nil?
+    instance[property.with] if Nanotek::NilWithFilter.accept(property) == true
   end
+  
 end
 end  

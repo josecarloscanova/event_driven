@@ -18,7 +18,7 @@ module Nanotek
       
       def setup
         YamlUnMarshaller.unmarshall([MODEL_PATH , CS_FILE])
-      end  
+      end
     #  WmiServiceConfigurator
       def test_system_32
           dto_hash = Array.new
@@ -28,7 +28,7 @@ module Nanotek
             dto_hash.push WmiClassDefinitionInstanceHashDecorator.new.convertible?(instance).instance_hash
           end
           puts dto_hash
-      end   
+      end
     end
 
     

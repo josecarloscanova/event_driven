@@ -26,11 +26,11 @@ module Nanotek
         wmi_service = Nanotek::WmiService.new(wcf)
         #depois tem outro ceu sem estrelas...
           wmi_service.get_instances.each do |instance|
-            result_hash = WmiClassDefinitionInstanceHashDecorator.new.convertible?(wmi_service.get_instances).instance_hash
-            puts result_hash
+            @result_hash = WmiClassDefinitionInstanceHashDecorator.new.convertible?(wmi_service.get_instances).instance_hash
           end
+          puts @result_hash
         end
-      
+
     end
 
 end

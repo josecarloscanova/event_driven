@@ -21,7 +21,6 @@ module Nanotek
             load_context
       end
       
-      
       def load_context
           WebApplicationContext.configure_application_context
       end
@@ -29,5 +28,3 @@ module Nanotek
     end
 
 end
-
-Nanotek::EventMainApp.new

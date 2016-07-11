@@ -6,9 +6,10 @@ require_relative '../../wmi/wmi_class_factory'
 require_relative '../../wmi/wmi_class_definition'
 require_relative '../../wmi/wmi_service_configurator'
 require_relative '../../wmi/wmi_configuration_factory'
+require_relative '../../serializers/yaml_unmarshaller'
 require_relative '../../wmi/wmi_result_class_transformer'
 require_relative '../../decorator/wmi_class_definition_instance_hash_decorator'
-require_relative '../../serializers/yaml_unmarshaller'
+
 
 module Nanotek 
 

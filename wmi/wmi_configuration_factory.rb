@@ -1,17 +1,11 @@
-require 'logger'
-#TODO: remove logger
 module Nanotek
     class WmiConfigurationFactory
         
-        @logger = Logger.new(STDOUT)
-        @logger.level = Logger::WARN
-      
         def WmiConfigurationFactory.get_empty_service_record
           @@service_record.new
         end
         
         def WmiConfigurationFactory.record_with content
-          @logger.debug content
           verify_record content
           @@service_record.new(content.class_name , content.path)
         end  

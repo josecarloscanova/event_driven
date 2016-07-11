@@ -1,5 +1,4 @@
 require_relative '../wmi/wmi_class_definition'
-#TODO: Implement validation for the class.
 module Nanotek
   
     class WmiClassDefinitionInstanceHashDecorator
@@ -9,7 +8,6 @@ module Nanotek
       def intialize
       end
       
-      #TODO: Implementa a exception handling mechanism, somewhere.
       def convertible? *args
         class_definition_instance = *args.flatten[0]
         populate_class_path class_definition_instance
