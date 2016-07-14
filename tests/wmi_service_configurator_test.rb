@@ -5,11 +5,14 @@ require_relative '../wmi/wmi_service_configurator'
 class WmiServiceConfiguratorTest < Minitest::Test
   
     def setup 
+      wsp = Nanotek::WmiServiceConfigurator.new
     end
 
     def test_wmi_provider_path_search
-      wsp = Nanotek::WmiServiceConfigurator.new
-      puts  wsp.find_wmi_configuration 'ROOT'
+      Nanotek::WmiServiceConfigurator.new
     end
   
+    def find_wmi_configuration_by_path_test
+    end
+    
 end

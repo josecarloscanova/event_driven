@@ -28,7 +28,9 @@ module Nanotek
       end
 #WmiClassDefinitionInstanceHashDecorator.new.convertible?(wmi_service.get_instances).instance_hash
     end
-
+    
+  private 
+  
     class YamlUnMarshaller
       
           def YamlUnMarshaller.unmarshall

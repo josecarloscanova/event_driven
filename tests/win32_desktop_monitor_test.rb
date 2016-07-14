@@ -30,6 +30,7 @@ module Nanotek
       
     end
 
+    private 
     
     class YamlUnMarshaller
       

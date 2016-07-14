@@ -20,7 +20,7 @@ module Nanotek
     @wcf = wcf
    self 
   end
-    
+
   def prepare_results(results)
     @result = Array.new
     instances = results

@@ -28,6 +28,8 @@ module Nanotek
       
     end
 
+    private 
+    
     class YamlUnMarshaller
       
           def YamlUnMarshaller.unmarshall

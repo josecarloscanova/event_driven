@@ -7,7 +7,7 @@ module Nanotek
         
         def WmiConfigurationFactory.record_with content
           verify_record content
-          @@service_record.new(content.class_name , content.path)
+          @@service_record.new(content[:service] , content[:location])
         end  
         
         private

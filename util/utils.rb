@@ -5,6 +5,7 @@ module Utils
 
   #TODO: Fix when put the project for gems.
   DEFAULT_CLASS_LOCATION = "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/".freeze
+#  DEFAULT_CLASS_LOCATION = "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/".freeze
 
   #TODO: Change the name of the class.
   #TODO: Fix the problem of recursion on directories  check if it is not a link to avoid redirection.
@@ -35,7 +36,7 @@ module Utils
           @classloader = Array.new  
           class_files.each do |entry|
               @classloader.push(entry) if (entry_directory?(entry) ? retrieve_yml_classes([entry,DEFAULT_CLASS_LOCATION]) : YamlProcessingFilter.check_valid_yaml_class(entry)) == true
-          end  
+          end
          true
         end
 
@@ -52,5 +53,27 @@ module Utils
             !entry[/\w+.yml{1}/].nil?
         end
   end
+  
+  class KeyValueDecorator
+    
+    
+    def initialize *args
+        keys = args.flatten
+        verify keys
+        @keys = []
+    end
+
+    def verify keys
+        keys.each do |key|
+             
+        end  
+    end  
+
+    def [](key_to_retrieve_value)
+       false
+    end  
+    
+  end
+  
 end
 

@@ -8,23 +8,23 @@ require_relative '../context/web_application_context'
 module Nanotek
 
     class EventMainApp
-      
+
       def initialize
           build_application_context
       end
-      
+
       def  build_application_context
             load_wmi_context
       end
 
       def  build_application_context
-            load_context
+           load_context
       end
-      
+
       def load_context
           WebApplicationContext.configure_application_context
       end
-      
+
     end
 
 end

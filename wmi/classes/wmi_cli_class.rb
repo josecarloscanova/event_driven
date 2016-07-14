@@ -8,7 +8,7 @@ module Nanotek
       load_wmi_classes
     end
     
-    
+
     def load_wmi_classes
       @classes[:CIM_Indication] = Nanotek::Wmi_Class.new("CIM_Indication" ,"ROOT\\Cli")
       @classes[:CIM_ClassIndication] = Nanotek::Wmi_Class.new("CIM_ClassIndication" ,"ROOT\\Cli")

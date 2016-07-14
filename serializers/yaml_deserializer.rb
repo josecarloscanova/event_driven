@@ -10,9 +10,15 @@ module Nanotek
 
         def YamlDeserializer.deserialize args
           pf = validate args
-          $class_loaded[pf.file] = YAML.load(IO.read("#{pf.path}#{pf.file}"))
+          io_file_str = IO.read(pf.path+pf.file)
+          parse_yaml_file io_file_str
+#          $class_loaded[pf.file] = parse_yaml_file io_file_str
         end
 
+        def YamlDeserializer.parse_yaml_file io_file_str
+            YAML.load(io_file_str)
+        end  
+        
         def YamlDeserializer.validate args
           raise ArgumentException , "Not valid arguments" unless args.is_a?Array || args.length != 2
           validate_path args
