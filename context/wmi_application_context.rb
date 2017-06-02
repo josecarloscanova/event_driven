@@ -9,12 +9,11 @@ module Nanotek
   
     class WmiApplicationContext < ApplicationContext
       
-        protected 
         
           def WmiApplicationContext.configure_application_context
             $wmi_configurations=[]
             $wmi_services=[]
-            Thread.new {
+                          puts "loading context"
                                   if $wmi_application_context_loaded.nil? || $wmi_application_context_loaded == false then
                                     WmiClassLoader::new
 #TODO: Fix the classloader, enhance the class design.
@@ -25,12 +24,11 @@ module Nanotek
                                     end  
                                     $wmi_application_context_loaded = true
                                    end
-              }.join
             true  
           end
-          
-          def find_wmi_configuration_by_name wmi_path
-              $wmi_configurations.select {|k| k.location == wmi_path}
+#TODO: Understand the need of this methods.      
+          def find_wmi_configuration_by_name wmi_name
+              $wmi_configurations.select {|k| k.name == wmi_name}
           end
  
           def find_wmi_configuration_by_path wmi_path
@@ -41,3 +39,7 @@ module Nanotek
     
     
 end
+#
+#wmi_class_loader = Nanotek::WmiApplicationContext.new{Nanotek::WmiApplicationContext.configure_application_context}.join
+#puts wmi_class_loader.to_s
+#puts  $wmi_class_loader.to_s

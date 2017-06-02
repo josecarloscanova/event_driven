@@ -12,7 +12,7 @@ class WmiClassLoaderTest < Minitest::Test
 #    $class_loaded.keys.each do |clazz|
 #       puts $class_loaded[clazz]
 #    end
-    puts $class_loaded.select{
+    puts $wmi_class_loader.select{
       |i,j|
       j.select { 
         |k,v|

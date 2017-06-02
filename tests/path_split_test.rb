@@ -46,8 +46,9 @@ class PathSplitTest < Minitest::Test
       
       def test_verify_depth
         depth = @@paths.inject{  |current,next_el| 
-          current.keys.length >= current.keys.length ? current  : next_el
+          current = current.keys.length >= next_el.keys.length ? current  : next_el
         }.keys.length
+        puts "depth length #{depth}"
       end
       
       def split_path what

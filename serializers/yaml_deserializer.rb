@@ -12,7 +12,6 @@ module Nanotek
           pf = validate args
           io_file_str = IO.read(pf.path+pf.file)
           parse_yaml_file io_file_str
-#          $class_loaded[pf.file] = parse_yaml_file io_file_str
         end
 
         def YamlDeserializer.parse_yaml_file io_file_str
@@ -20,7 +19,7 @@ module Nanotek
         end  
         
         def YamlDeserializer.validate args
-          raise ArgumentException , "Not valid arguments" unless args.is_a?Array || args.length != 2
+          raise ArgumentError , "Not valid arguments" unless args.is_a?Array || args.length != 2
           validate_path args
         end
 
@@ -29,7 +28,7 @@ module Nanotek
 
           def YamlDeserializer.validate_path  args
                pn = Pathname.new(args[0])
-               raise ArgumentException , "Not a valid directory" unless pn.directory?
+               raise ArgumentError , "Not a valid directory" unless pn.directory?
                mount_path_base_structure args
           end
 

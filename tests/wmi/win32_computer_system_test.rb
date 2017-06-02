@@ -13,8 +13,8 @@ require_relative '../../decorator/wmi_class_definition_instance_hash_decorator'
 
 module Nanotek 
 
-    MODEL_PATH = "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/"
-    CS_FILE = "Win32_ComputerSystem.yml"
+  MODEL_PATH = Utils::DEFAULT_CLASS_LOCATION
+  CS_FILE = "Win32_ComputerSystem.yml"
   
     class  Win32ComputerSystemTest < Minitest::Test
       

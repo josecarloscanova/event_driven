@@ -89,4 +89,4 @@ class WmiProviderPath
   
 end
 
-puts WmiProviderPath.new().find_path('SecurityClient')
+puts WmiProviderPath.new().find_path('Microsoft')

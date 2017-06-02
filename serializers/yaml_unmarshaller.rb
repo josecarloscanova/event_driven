@@ -6,11 +6,11 @@ module Nanotek
 
         def YamlUnMarshaller.unmarshall args
           pf = validate args
-          $class_loaded = YAML.load(IO.read("#{pf.path}#{pf.file}"))
+          $wmi_class_loader = YAML.load(IO.read("#{pf.path}#{pf.file}"))
         end
 
         def YamlUnMarshaller.validate args
-          raise ArgumentException , "Not valid arguments" unless args.is_a?Array || args.length != 2
+          raise ArgumentError , "Not valid arguments" unless args.is_a?Array || args.length != 2
           validate_path args
         end
 
@@ -19,7 +19,7 @@ module Nanotek
 
           def YamlUnMarshaller.validate_path  args
                pn = Pathname.new(args[0])
-               raise ArgumentException , "Not a valid directory" unless pn.directory?
+               raise ArgumentError , "Not a valid directory" unless pn.directory?
                mount_path_base_structure args
           end
 

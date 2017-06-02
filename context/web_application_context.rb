@@ -25,7 +25,7 @@ module Nanotek
       #           end       
 #      Rack::Handler::WEBrick.run app
       if WebApplicationContext.loaded_wmi_context? then
-              config = {:Port => 8888 , :DocumentRoot  => "C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/webrick-1.3.1/lib/doc"}
+              config = {:Port => 8888 , :DocumentRoot  => "C:/Ruby23-x64/lib/ruby/gems/2.2.0/gems/webrick-1.3.1/lib/doc"}
               #config = {:Port => 8888 , :DocumentRoot  => "C:/opscode/chefdk/embedded/bin/doc/"}
               server = WEBrick::HTTPServer.new config
               server.mount "c:/temp", WEBrick::HTTPServlet::FileHandler, './'

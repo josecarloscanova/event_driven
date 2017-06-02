@@ -3,11 +3,10 @@ require_relative 'wmi_class_base'
 
 module Nanotek
 
-      class WmiMsdtcClass
+      class WmiMsdtcClass < WmiClassBase
         
         def initialize
-          @classes = {}
-          load_wmi_classes
+          super 
         end
         
         def load_wmi_classes

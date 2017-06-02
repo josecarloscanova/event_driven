@@ -19,7 +19,7 @@ class WmiContext
     def WmiContext.decode service_definition
         decoded = service_definition[:service] if (service_definition.is_a?Hash) || (service_definition.respond_to?:service) 
         decoded = service_definition if decoded.nil?
-        raise ArgumentException , "Invalid Function call" if decoded.nil? 
+        raise ArgumentError , "Invalid Function call" if decoded.nil? 
       return decoded
     end  
       

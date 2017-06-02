@@ -2,11 +2,10 @@ require_relative 'wmi_class_base'
 
 module Nanotek
 
-  class WmiDefaultClasses
+  class WmiDefaultClasses < WmiClassBase
     
     def initialize
-      @classes = {}
-      load_wmi_classes
+      super
     end
     
     def load_wmi_classes
@@ -54,7 +53,7 @@ module Nanotek
       @classes[:SystemRestore] = Nanotek::Wmi_Class.new("SystemRestore" ,"ROOT\DEFAULT")
 
     end
-    
+
   end
 
 end

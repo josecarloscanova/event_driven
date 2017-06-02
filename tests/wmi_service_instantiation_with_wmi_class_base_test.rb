@@ -2,10 +2,6 @@ require 'minitest/autorun'
 require_relative '../wmi/classes/wmi_root_cimv2_classes'
 require_relative '../wmi/classes/wmi_peh_classes'
 require_relative '../wmi/wmi_service'
-require_relative '../wmi/operating_system_factory'
-require_relative '../wmi/process_factory'
-require_relative '../wmi/service_factory'
-require_relative '../wmi/network_adapter_factory'
 
 
 class Wmi_service_instantiation_with_wmi_class_base_test < Minitest::Test
@@ -14,7 +10,7 @@ class Wmi_service_instantiation_with_wmi_class_base_test < Minitest::Test
       wmi = Nanotek::WmiRootCimv2Class.new
       wmi_class =  wmi.find_wmi_class(:Win32_OperatingSystem)
       configuration_factory = wmi_class.values.select{|v| v}
-      wmi = Nanotek::WmiService.new(with_configuration_factory(configuration_factory))
+      wmi = Nanotek::WmiService.new(configuration_factory)
       wmi.instances_of(:Win32_OperatingSystem).each do |os|
         puts  OperatingSystemFactory.process_with(os)
       end    

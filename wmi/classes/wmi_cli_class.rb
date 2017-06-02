@@ -4,8 +4,7 @@ module Nanotek
 
   class WmiCliClass < WmiClassBase
     def initialize
-      @classes = {}
-      load_wmi_classes
+      super
     end
     
 

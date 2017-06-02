@@ -1,4 +1,5 @@
-require_relative '../filter/filter.rb'
+require_relative '../filter/filter'
+module Nanotek
 class WmiClassFilter < Filter
   
   def initialize
@@ -39,4 +40,5 @@ class WmiClassFilter < Filter
   
 @@property_struct = Struct.new(:name)
   
+end
 end

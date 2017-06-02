@@ -10,7 +10,7 @@ class WmiServiceTest < Minitest::Test
   end
   
   def test_configure
-    wmisc = WmiServiceConfigurator.new
+    wmisc = Nanotek::WmiServiceConfigurator.new
     wmisc.wmi_configurations.each {
         |p|
             wmiservice  = WmiService.new(p)

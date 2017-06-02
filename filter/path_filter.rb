@@ -12,7 +12,7 @@ module Nanotek
       end
     
       def validate_arg args
-#          raise ArgumentException , "Path Null or Empty" if args.nil? || !args.is_a?(String)
+#          raise ArgumentError , "Path Null or Empty" if args.nil? || !args.is_a?(String)
       end
     
       def empty?

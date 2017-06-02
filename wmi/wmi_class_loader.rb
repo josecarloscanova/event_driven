@@ -1,5 +1,6 @@
 require_relative '../util/utils'
 require_relative '../serializers/yaml_deserializer'
+require_relative 'wmi_class_definition'
 
 module Nanotek
 
@@ -24,3 +25,4 @@ module Nanotek
 
   end
 end
+

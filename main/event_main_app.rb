@@ -17,14 +17,19 @@ module Nanotek
             load_wmi_context
       end
 
-      def  build_application_context
-           load_context
+      def load_wmi_context
+        Nanotek::WmiApplicationContext.new{Nanotek::WmiApplicationContext.configure_application_context}.join
       end
-
-      def load_context
-          WebApplicationContext.configure_application_context
-      end
+#      def  build_application_context
+#           load_context
+#      end
+#
+#      def load_context
+#          WebApplicationContext.configure_application_context
+#      end
 
     end
 
 end
+
+Nanotek::EventMainApp.new

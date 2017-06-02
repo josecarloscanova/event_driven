@@ -8,7 +8,7 @@ require_relative 'wmi_service'
 require_relative './classes/wmi_root_cimv2_classes'
 require_relative './classes/wmi_root_classes'
 require_relative '../filter/nil_filter'
-require_relative 'wmi_class_definition'
+require_relative './wmi_class_definition'
 
 
 module Nanotek
@@ -159,7 +159,7 @@ class WmiRootDefaultFileFormatter
       end  
       
       def execute_shell_command
-        `PowerShell.exe -Command "&{Get-WmiObject -List -namespace  ROOT\\DEFAULT | Get-Member -MemberType Property | grep TypeName:}"`
+        `PowerShell.exe -Command "&{Get-WmiObject -List | Get-Member -MemberType Property | grep TypeName:}"`
   #        fd = STDOUT.fcntl(Fcntl::F_DUPFD)
   #        IO.new(fd, mode: 'w:UTF-16LE', cr_newline: true)
       end  
@@ -327,7 +327,7 @@ class WmiProviderPathFormatter
       end  
       
       def execute_shell_command
-        `PowerShell.exe -Command "&{Get-WmiObject -List -namespace  ROOT\\StandardCimv2 | Get-Member -MemberType Property | grep TypeName:}"`
+        `PowerShell.exe -Command "&{Get-WmiObject -List -Namespace  ROOT\\StandardCimv2 | Get-Member -MemberType Property | grep TypeName:}"`
   #        fd = STDOUT.fcntl(Fcntl::F_DUPFD)
   #        IO.new(fd, mode: 'w:UTF-16LE', cr_newline: true)
       end  
@@ -361,7 +361,7 @@ class WmiProviderPathFormatter
             wmf = WmiClassFormatter.new ["Win32_SystemResources" ,"ROOT\\cimv2"]
             wmf_cd = wmf.cd if wmf.filter_shell_command
             puts wmf_cd.to_yaml               
-            yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/"
+            yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/Java/git_repo/event_driven/base/yaml/"
             yaml_serialzier.serialize 
           end  
     end 
@@ -377,7 +377,7 @@ class WmiProviderPathFormatter
             wmf = WmiClassFormatter.new ["Win32_SystemSlot" ,"ROOT\\cimv2"]
             wmf_cd = wmf.cd if wmf.filter_shell_command
             puts wmf_cd.to_yaml               
-            yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/"
+            yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/Java/git_repo/event_driven/base/yaml/"
             yaml_serialzier.serialize 
           end  
     end  
@@ -393,7 +393,7 @@ class WmiProviderPathFormatter
               wmf = WmiClassFormatter.new ["__TimerInstruction" ,"ROOT\\RSOP"]
               wmf_cd = wmf.cd if wmf.filter_shell_command
               puts wmf_cd.to_yaml               
-              yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/rsop/"
+              yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/Java/git_repo/event_driven/base/yaml/rsop/"
               yaml_serialzier.serialize 
             end  
       end  
@@ -409,7 +409,7 @@ class WmiProviderPathFormatter
             wmf = WmiClassFormatter.new ["__Win32Provider" ,"ROOT\\DEFAULT"]
             wmf_cd = wmf.cd if wmf.filter_shell_command
             puts wmf_cd.to_yaml               
-            yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/default/"
+            yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/Java/git_repo/event_driven/base/yaml/default/"
             yaml_serialzier.serialize 
           end  
     end  
@@ -617,7 +617,6 @@ class WmiProviderPathFormatter
                                   puts wmi_class
                                   wmf = WmiClassFormatter.new [wmi_class.base_class , wmi_class.wmi_path]
                                   wmf_cd = wmf.cd if wmf.filter_shell_command
-                                  puts wmf_cd.to_s
                                   Nanotek::YamlSerializer.new(wmf_cd).serialize
                             }.resume
                   end  
@@ -662,7 +661,7 @@ class WmiClassFormatter
   class ClassLoader
     
     def initialize
-            @cd = YAML.load(IO.read("C:/cygwin64/home/user/event_driven/wmi/classes/yaml/Win32_SystemBIOS.yml")) 
+            @cd = YAML.load(IO.read("C:/Java/git_repo/event_driven/base/yaml/Win32_SystemBIOS.yml")) 
             cd_i = @cd.values[0]
             get_class_definition_from_service cd_i
     end  
@@ -678,12 +677,14 @@ class WmiClassFormatter
     
         def initialize *args
           @class_definition = args[0]
-          @path = Nanotek::NilFilter.accept(args[1]) ? "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/" : args[1]
+          @path = Nanotek::NilFilter.accept(args[1]) ? "C:/Java/git_repo/yml/" : args[1]
+          puts "the path #{@path}"
         end
         
         def serialize
           puts  "#{@class_definition.name}"
           store = YAML::Store.new "#{@path}#{@class_definition.name}.yml"
+          puts "the class string name #{@path}#{@class_definition.name}.yml"
           store.transaction do
             store[@class_definition.name] = @class_definition
           end
@@ -696,7 +697,7 @@ class WmiClassFormatter
         
 end
 #Nanotek::WmiCIM_Scanner.new
-Nanotek::Wmi2Win32_SystemResources_Scanner.new
+Nanotek::WmiCimV2Scanner.new
 #TypeName: System.Management.ManagementObject#root\cimv2\Win32_USBHub
 #
 #Name                        MemberType Definition                                     

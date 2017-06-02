@@ -19,12 +19,12 @@ module Nanotek
       def populate_class_path cdi
           @instance_hash = Hash.new
           @instance_hash[:name] = cdi[0]
-          fill_properties_hash cdi[1]
+          fill_properties_hash cdi[0].properties
       end
        
       def fill_properties_hash cdi
           cdi.select {|k|
-            @instance_hash[k.name.to_sym]  = k.value
+            @instance_hash[k.with.to_sym]  = k.with
           } 
         true 
       end

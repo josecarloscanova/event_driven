@@ -3,6 +3,8 @@ require 'wmi-lite'
 require_relative '../wmi/wmi_configuration_factory'
 require_relative '../wmi/wmi_service'
 
+module Nanotek
+
 class ServiceLocationTest < Minitest::Test
   
   def setup 
@@ -38,4 +40,5 @@ class ServiceLocationTest < Minitest::Test
 #      assert_equal($wmi_instances[configuration[:service]] , wmi , "Verified Global instance" )
   end
   
+end
 end
