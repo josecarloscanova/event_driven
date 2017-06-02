@@ -29,11 +29,11 @@ module Nanotek
         wcf = Nanotek::WmiClassFactory.new($wmi_class_loader["Win32_BIOS"])
         wmi_service = Nanotek::WmiService.new(wcf)
         wmi_service.get_instances.each do |instance|
-          transform_result_class_class instance[1].first_of
+          transform_result_class instance[1].first_of
         end
       end
 
-      def transform_result_class_class wmi_first_of_result
+      def transform_result_class wmi_first_of_result
           class_definition = $wmi_class_loader["Win32_BIOS"]
           read_first_result_properties wmi_first_of_result , class_definition
       end
@@ -41,13 +41,13 @@ module Nanotek
       def read_first_result_properties  wmi_first_of_result , class_definition
         properties = class_definition.properties
         values = {}
-        properties.select {|k|
-          parameter = wmi_first_of_result[0][k.with]
+        properties.each {|k|
+          parameter = wmi_first_of_result[k.with]
           convert_to_hash k.with , convert_parameter_to_string(parameter) , values unless check_if_empty parameter
         }
         values[:wmi_name] = class_definition.name
         values[:wmi_class_path] = class_definition.path
-        values.select { |k,v|
+        values.each { |k,v|
           puts k.to_s + ":" + v unless v.empty?
         }
       end

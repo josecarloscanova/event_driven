@@ -635,7 +635,7 @@ class WmiClassFormatter
 
           def filter_shell_command
             result = execute_shell_command @args
-            raise  ArgumentError , "Error on Paramter" unless result.is_a?String
+            raise  ArgumentError , "Error on Parameter" unless result.is_a?String
             @cd = Nanotek::ClassDefinition.new 
             @cd.name = @args[0]
             @cd.path = @args[1]
@@ -652,7 +652,7 @@ class WmiClassFormatter
         args  = ['Win32_USBHub' , 'root\\cimv2'] if args.nil?
         `PowerShell.exe -Command "&{Get-WmiObject -Class #{args[0]} -namespace #{args[1]} | Get-Member -MemberType Property}"`
       end  
-      
+
       def remove_preamble value
         split_all(value.chomp.lstrip.split("#").last)
       end
