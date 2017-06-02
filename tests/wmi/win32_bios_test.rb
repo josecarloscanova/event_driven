@@ -39,11 +39,30 @@ module Nanotek
       end
       
       def read_first_result_properties  wmi_first_of_result , class_definition
-          properties = class_definition.properties
+        properties = class_definition.properties
+        values = {}
         properties.select {|k|
-          puts wmi_first_of_result[0][k.with]
+          parameter = wmi_first_of_result[0][k.with]
+          convert_to_hash k.with , convert_parameter_to_string(parameter) , values unless check_if_empty parameter
+        }
+        values[:wmi_name] = class_definition.name
+        values[:wmi_class_path] = class_definition.path
+        values.select { |k,v|
+          puts k.to_s + ":" + v unless v.empty?
         }
       end
+      
+      def convert_to_hash parameter , parameter_value , hash
+          hash[parameter.to_sym] = parameter_value
+      end  
+      
+      def convert_parameter_to_string parameter
+          parameter.to_s
+      end  
+      
+      def check_if_empty parameter
+          false
+      end 
       
     end
 
