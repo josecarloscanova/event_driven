@@ -9,6 +9,11 @@ module Utils
 
   #TODO: Change the name of the class.
   #TODO: Fix the problem of recursion on directories  check if it is not a link to avoid redirection.
+  
+  def Utils.list_directory_entry dir_entry
+      Dir.glob(dir_entry)
+  end  
+  
   class YamlProcessingFilter
 
     attr_accessor(:classloader)
@@ -60,7 +65,7 @@ module Utils
     def initialize *args
         keys = args.flatten
         verify keys
-        @keys = []
+        @keys = keys
     end
 
     def verify keys
@@ -77,3 +82,5 @@ module Utils
   
 end
 
+ret = Utils.list_directory_entry("**/*.yml")
+puts ret

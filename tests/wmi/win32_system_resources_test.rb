@@ -2,7 +2,6 @@ require_relative 'test_base'
 
 module Nanotek
 
-  MODEL_PATH = Utils::DEFAULT_CLASS_LOCATION
   SRESOURCES_FILE = "Win32_SystemResources.yml"
   class  Win32SystemSlotTest < Nanotek::TestBase
 

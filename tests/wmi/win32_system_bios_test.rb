@@ -4,7 +4,7 @@ module Nanotek
 
   SBIOS_FILE = "Win32_SystemBIOS.yml"
   
-  class  Win32SystemBiosTest < Minitest::Test
+  class  Win32SystemBiosTest < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_SystemBIOS"
     def setup

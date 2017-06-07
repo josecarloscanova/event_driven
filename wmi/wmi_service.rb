@@ -28,7 +28,7 @@ module Nanotek
     end
 
     def first_of
-        @wmi.first_of( @service_record_configuration.class_name)
+        @wmi.first_of(@service_record_configuration.class_name)
     end
 
     private 

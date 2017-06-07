@@ -700,8 +700,8 @@ module Nanotek
   end
 
 end
-Nanotek::WmiWin32ProductScanner.new
-#Nanotek::WmiCimV2Scanner.new
+# Nanotek::WmiWin32ProductScanner.new
+Nanotek::WmiCimV2Scanner.new
 #Nanotek::WmiRootCimV2FileFormatter.new
 #TypeName: System.Management.ManagementObject#root\cimv2\Win32_USBHub
 #

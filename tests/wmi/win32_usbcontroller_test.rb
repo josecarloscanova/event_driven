@@ -6,7 +6,7 @@ module Nanotek
   USB_CONTROLLER_FILE = "Win32_USBController.yml"
   class  Win32SystemServicesTest < Nanotek::TestBase
     
-    @@wmi_class_name = "Win32_TimeZone"
+    @@wmi_class_name = "Win32_USBController"
     
     def setup
       YamlUnMarshaller.unmarshall([MODEL_PATH , USB_CONTROLLER_FILE])

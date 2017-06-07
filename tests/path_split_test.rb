@@ -30,12 +30,14 @@ class PathSplitTest < Minitest::Test
       end
       
       def test_spring_path1
-          puts  @@paths.select{
+            @@paths.select{
                                 |a|
                                 a unless a[2].nil? 
                               }.group_by{ |u|
                                 u[2]
-                              }
+                                }.each{|k|
+                                  puts "here is " + k.inspect
+                                }
       end
       
       def test_configuration_unicity

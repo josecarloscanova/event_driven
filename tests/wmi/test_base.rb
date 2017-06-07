@@ -55,6 +55,8 @@ module Nanotek
     end
     
     def verify_wmi_service_for_class wmi_class_name
+#      puts "wmi class name " + wmi_class_name.inspect
+#      puts "class definition " + $wmi_class_loader[wmi_class_name].inspect
       wmi_service = initialize_check_wmi_class wmi_class_name
       wmi_service.get_instances.each do |instance|
         transform_result_class instance[1].instances_of , wmi_class_name
