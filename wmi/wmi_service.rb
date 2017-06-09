@@ -71,9 +71,6 @@ module Nanotek
                 }
                 values[:wmi_name] = class_definition.name
                 values[:wmi_class_path] = class_definition.path
-                values.each {|k,v|
-                  puts k.to_s + ":" + v unless v.empty?
-                }
         end
               
         def convert_to_hash_entry parameter , parameter_value , hash

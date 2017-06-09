@@ -1,0 +1,5 @@
+---
+Win32_Directory: !ruby/object:Nanotek::ClassDefinition
+  name: Win32_Directory
+  path: ROOT\cimv2
+  properties: []

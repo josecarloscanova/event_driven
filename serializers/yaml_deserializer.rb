@@ -10,7 +10,7 @@ module Nanotek
 
         def YamlDeserializer.deserialize args
           pf = validate args
-          io_file_str = IO.read(pf.path+pf.file)
+          io_file_str = IO.read(pf.path+"/"+pf.file)
           parse_yaml_file io_file_str
         end
 
@@ -28,8 +28,8 @@ module Nanotek
 
           def YamlDeserializer.validate_path  args
                pn = Pathname.new(args[0])
-               raise ArgumentError , "Not a valid directory" unless pn.directory?
-               mount_path_base_structure args
+#               raise ArgumentError , "Not a valid directory" unless pn.directory?
+               mount_path_base_structure [File.expand_path(pn.to_path) , args[1]]
           end
 
           def YamlDeserializer.mount_path_base_structure args

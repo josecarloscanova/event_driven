@@ -1,0 +1,4 @@
+---
+Win32_IDEControllerDevice: !ruby/object:Nanotek::ClassDefinition
+  name: Win32_IDEControllerDevice
+  path: ROOT\cimv2

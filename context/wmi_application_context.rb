@@ -17,10 +17,11 @@ module Nanotek
                                   if $wmi_application_context_loaded.nil? || $wmi_application_context_loaded == false then
                                     WmiClassLoader::new
 #TODO: Fix the classloader, enhance the class design.
-                                    $wmi_class_loader.each do |clazz|
+                                    $wmi_class_loader.each do |k , v|
 #TODO: DO better... fix the class loading strategy.
-                                      cf = Nanotek::WmiClassFactory.new clazz[1][clazz[0]]
+                                      cf = Nanotek::WmiClassFactory.new v
                                       wmi_service = Nanotek::WmiService.new(cf)
+                                      puts k.inspect
                                     end  
                                     $wmi_application_context_loaded = true
                                    end
@@ -40,6 +41,6 @@ module Nanotek
     
 end
 #
-#wmi_class_loader = Nanotek::WmiApplicationContext.new{Nanotek::WmiApplicationContext.configure_application_context}.join
+wmi_class_loader = Nanotek::WmiApplicationContext.new{Nanotek::WmiApplicationContext.configure_application_context}.join
 #puts wmi_class_loader.to_s
 #puts  $wmi_class_loader.to_s

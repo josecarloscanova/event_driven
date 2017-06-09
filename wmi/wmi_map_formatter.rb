@@ -411,6 +411,22 @@ module Nanotek
     end
   end
 
+
+  class WmiWin32_USBControllerDevice_Scanner
+    def initialize
+#      @cim_v2_classes = Nanotek::WmiRootClasses.new
+      generate_class_files
+    end
+
+    def generate_class_files
+      wmf = WmiClassFormatter.new ["Win32_USBControllerDevice" ,"ROOT\\CIMV2"]
+      wmf_cd = wmf.cd if wmf.filter_shell_command
+      puts wmf_cd.to_yaml
+      yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd
+      yaml_serialzier.serialize
+    end
+  end
+  
   class WmiWin32_USBController_Scanner
     def initialize
       @cim_v2_classes = Nanotek::WmiRootClasses.new
@@ -421,8 +437,8 @@ module Nanotek
       wmf = WmiClassFormatter.new ["Win32_USBController" ,"ROOT\\CIMV2"]
       wmf_cd = wmf.cd if wmf.filter_shell_command
       puts wmf_cd.to_yaml
-      yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd
-      yaml_serialzier.serialize
+      yaml_serialzier = Nanotek::YamlSerializer.new(wmf_cd).serialize
+#      yaml_serialzier.serialize
     end
   end
 
@@ -684,8 +700,8 @@ module Nanotek
     def initialize *args
       @class_definition = args[0]
       @path = Nanotek::NilFilter.accept(args[1]) ? "C:/Java/git_repo/yml/" : args[1]
-      puts "the path #{@path}"
-    end
+      self
+   end
 
     def serialize
       puts  "#{@class_definition.name}"
@@ -700,8 +716,10 @@ module Nanotek
   end
 
 end
+
+Nanotek::WmiWin32_USBController_Scanner.new
 # Nanotek::WmiWin32ProductScanner.new
-Nanotek::WmiCimV2Scanner.new
+#Nanotek::WmiCimV2Scanner.new
 #Nanotek::WmiRootCimV2FileFormatter.new
 #TypeName: System.Management.ManagementObject#root\cimv2\Win32_USBHub
 #

@@ -1,0 +1,39 @@
+---
+Win32_ComputerSystemProduct: !ruby/object:Nanotek::ClassDefinition
+  name: Win32_ComputerSystemProduct
+  path: ROOT\cimv2
+  properties:
+  - !ruby/struct
+    with: caption
+  - !ruby/struct
+    with: description
+  - !ruby/struct
+    with: identifyingnumber
+  - !ruby/struct
+    with: name
+  - !ruby/struct
+    with: skunumber
+  - !ruby/struct
+    with: uuid
+  - !ruby/struct
+    with: vendor
+  - !ruby/struct
+    with: version
+  - !ruby/struct
+    with: __class
+  - !ruby/struct
+    with: __derivation
+  - !ruby/struct
+    with: __dynasty
+  - !ruby/struct
+    with: __genus
+  - !ruby/struct
+    with: __namespace
+  - !ruby/struct
+    with: __path
+  - !ruby/struct
+    with: __property_count
+  - !ruby/struct
+    with: __relpath
+  - !ruby/struct
+    with: __server

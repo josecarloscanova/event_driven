@@ -12,6 +12,7 @@ class WmiClassLoaderTest < Nanotek::TestBase
   #TODO: Fix the class name for that classes can be used on
   def test_wmi_class_loader_test
     Nanotek::WmiClassLoader::new.classes
+    Thread.abort_on_exception = true
     $wmi_class_loader.each{|k,v|
       wcf = Nanotek::WmiClassFactory.new(v)
       wmi_service = Nanotek::WmiService.new(wcf)

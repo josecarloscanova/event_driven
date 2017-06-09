@@ -1,0 +1,37 @@
+---
+Win32_ControllerHasHub: !ruby/object:Nanotek::ClassDefinition
+  name: Win32_ControllerHasHub
+  path: ROOT\cimv2
+  properties:
+  - !ruby/struct
+    with: accessstate
+  - !ruby/struct
+    with: antecedent
+  - !ruby/struct
+    with: dependent
+  - !ruby/struct
+    with: negotiateddatawidth
+  - !ruby/struct
+    with: negotiatedspeed
+  - !ruby/struct
+    with: numberofhardresets
+  - !ruby/struct
+    with: numberofsoftresets
+  - !ruby/struct
+    with: __class
+  - !ruby/struct
+    with: __derivation
+  - !ruby/struct
+    with: __dynasty
+  - !ruby/struct
+    with: __genus
+  - !ruby/struct
+    with: __namespace
+  - !ruby/struct
+    with: __path
+  - !ruby/struct
+    with: __property_count
+  - !ruby/struct
+    with: __relpath
+  - !ruby/struct
+    with: __server

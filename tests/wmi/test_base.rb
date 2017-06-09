@@ -12,7 +12,7 @@ require_relative '../../wmi/wmi_result_class_transformer'
 
 module Nanotek
 
-  MODEL_PATH = Utils::DEFAULT_CLASS_LOCATION
+  MODEL_PATH = Utils::RELATIVE_CLASS_LOCATION
   class TestBase  < Minitest::Test
     def transform_result_class instances , clazz
       class_definition = $wmi_class_loader[clazz]

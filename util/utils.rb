@@ -5,6 +5,7 @@ module Utils
 
   #TODO: Fix when put the project for gems.C:/Java/git_repo/event_driven/base/yaml
   DEFAULT_CLASS_LOCATION = "C:/Java/git_repo/event_driven/base/yaml/".freeze
+  RELATIVE_CLASS_LOCATION = "base/yaml/".freeze
 #  DEFAULT_CLASS_LOCATION = "C:/cygwin64/home/user/event_driven/wmi/classes/yaml/".freeze
 
   #TODO: Change the name of the class.

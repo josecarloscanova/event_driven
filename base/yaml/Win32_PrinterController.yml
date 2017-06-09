@@ -1,0 +1,4 @@
+---
+Win32_PrinterController: !ruby/object:Nanotek::ClassDefinition
+  name: Win32_PrinterController
+  path: ROOT\cimv2

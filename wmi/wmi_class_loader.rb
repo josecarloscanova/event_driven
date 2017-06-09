@@ -14,9 +14,9 @@ module Nanotek
     def load_wmi_classes
         $wmi_class_loader = {}
         yaml_class_filter = Utils::YamlProcessingFilter.new 
-        @classes =  yaml_class_filter.classloader if yaml_class_filter.retrieved_yml_classes?(Utils::DEFAULT_CLASS_LOCATION)
+        @classes =  yaml_class_filter.classloader if yaml_class_filter.retrieved_yml_classes?(Utils::RELATIVE_CLASS_LOCATION)
         @classes.each do |clazz_file|
-          clazz =  Nanotek::YamlDeserializer.deserialize([Utils::DEFAULT_CLASS_LOCATION,clazz_file])
+          clazz =  Nanotek::YamlDeserializer.deserialize([Utils::RELATIVE_CLASS_LOCATION,clazz_file])
           $wmi_class_loader.merge!(clazz)
         end  
     end
