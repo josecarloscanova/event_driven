@@ -6,6 +6,7 @@ module Nanotek
   class  Win32OperatingSystemTest < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_OperatingSystem"
+    
     def setup
       YamlUnMarshaller.unmarshall([MODEL_PATH , OS_FILE])
     end

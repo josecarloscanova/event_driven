@@ -5,7 +5,7 @@ module Nanotek
   NA_FILE = "Win32_NetworkAdapter.yml"
   class  Win32SystemBiosTest < Nanotek::TestBase
 
-    @@wmi_class_name = "Win32_Desktop"
+    @@wmi_class_name = "Win32_NetworkAdapter"
     
     def setup
       YamlUnMarshaller.unmarshall([MODEL_PATH , NA_FILE])

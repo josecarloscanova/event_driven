@@ -3,7 +3,7 @@ require_relative 'test_base'
 module Nanotek
 
   PMA_FILE = "Win32_PhysicalMemoryArray.yml"
-  class Win32PhysicalMemoryArray < Nanotek::TestBase
+  class Test < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_PhysicalMemoryArray"
     def setup

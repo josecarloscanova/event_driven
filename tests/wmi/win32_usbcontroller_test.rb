@@ -4,10 +4,9 @@ module Nanotek
 
   MODEL_PATH = Utils::DEFAULT_CLASS_LOCATION
   USB_CONTROLLER_FILE = "Win32_USBController.yml"
-  class  Win32SystemServicesTest < Nanotek::TestBase
-    
+  class  Test < Nanotek::TestBase
+
     @@wmi_class_name = "Win32_USBController"
-    
     def setup
       YamlUnMarshaller.unmarshall([MODEL_PATH , USB_CONTROLLER_FILE])
     end

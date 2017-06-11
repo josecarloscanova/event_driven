@@ -3,10 +3,9 @@ require_relative 'test_base'
 module Nanotek
 
   SRESOURCES_FILE = "Win32_SystemResources.yml"
-  class  Win32SystemSlotTest < Nanotek::TestBase
+  class  Test < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_SystemResources"
-    
     def setup
       YamlUnMarshaller.unmarshall([MODEL_PATH , SRESOURCES_FILE])
     end

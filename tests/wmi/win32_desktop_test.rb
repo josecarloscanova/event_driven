@@ -4,7 +4,7 @@ module Nanotek
 
   D_FILE = "Win32_Desktop.yml"
   
-  class  Win32SystemServicesTest <  Nanotek::TestBase
+  class  Test <  Nanotek::TestBase
 
     @@wmi_class_name = "Win32_Desktop"
     def setup

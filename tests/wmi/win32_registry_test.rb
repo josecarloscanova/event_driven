@@ -3,7 +3,7 @@ require_relative 'test_base'
 module Nanotek
 
   REGISTRY_FILE = "Win32_Registry.yml"
-  class Win32EventLogTest < Nanotek::TestBase
+  class Test < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_Registry"
     def setup

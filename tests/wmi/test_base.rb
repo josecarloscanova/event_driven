@@ -47,7 +47,7 @@ module Nanotek
     def check_if_empty parameter
       parameter.nil?
     end
-
+#TODO: 
     def initialize_check_wmi_class wmi_class
       wcf = Nanotek::WmiClassFactory.new($wmi_class_loader[wmi_class])
       raise ArgumentError "No Wmi Class #{wmi_class} defined"  if check_if_empty wcf

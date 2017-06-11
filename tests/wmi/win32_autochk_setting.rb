@@ -5,7 +5,7 @@ module Nanotek
 
     BIOS_FILE = "Win32_AutochkSetting.yml"
 
-    class  Win32SystemBiosTest < Nanotek::TestBase
+    class  Test < Nanotek::TestBase
 
       @@wmi_class_name = "Win32_AutochkSetting"
       
@@ -17,8 +17,7 @@ module Nanotek
       def test_wmi_class
         verify_wmi_service_for_class @@wmi_class_name
       end
-      
-      
+
     end
 
 end

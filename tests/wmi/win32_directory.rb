@@ -5,7 +5,7 @@ module Nanotek
 
     BIOS_FILE = "Win32_Directory.yml"
 
-    class  Win32SystemBiosTest < Nanotek::TestBase
+    class  Test < Nanotek::TestBase
 
       @@wmi_class_name = "Win32_Directory"
       

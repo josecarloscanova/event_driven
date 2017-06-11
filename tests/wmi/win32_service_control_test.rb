@@ -3,7 +3,7 @@ require_relative 'test_base'
 module Nanotek
 
   SCONTROL_FILE = "Win32_ServiceControl.yml"
-  class Win32ServiceControlTest < Nanotek::TestBase
+  class Test < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_ServiceControl"
     def setup

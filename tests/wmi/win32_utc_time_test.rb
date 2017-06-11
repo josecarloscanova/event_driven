@@ -3,10 +3,9 @@ require_relative 'test_base'
 module Nanotek
 
   UTC_TIME_FILE = "Win32_UTCTime.yml"
-  class  Win32SystemServicesTest < Nanotek::TestBase
+  class  Test < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_UTCTime"
-    
     def setup
       YamlUnMarshaller.unmarshall([MODEL_PATH , UTC_TIME_FILE])
     end

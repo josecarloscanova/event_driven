@@ -221,47 +221,48 @@ module Nanotek
     end
   end
 
-  class WmiRootCliFileFormatter
-    include FileUtils
-    def initialize
-      @wmi_root_classes = []
-      #            io = IO.read(File.join(File.dirname(__FILE__), 'wmi_root_objects'))
-      execute_shell_command.split("\n").each do |value|
-        normalize value
-        @wmi_root_classes.push remove_preamble(value) if normalize value
-      end
-      @classes =[]
-      @wmi_root_classes.each do |value|
-        @classes.push(Nanotek::Wmi_Class.new(value.last ,   value[0..value.length-2].join("\\"))) if value.length > 0
-      end
-      @classes.each do |value|
-        puts "@classes[:#{value[:base_class]}] = Nanotek::Wmi_Class.new(\"#{value[0]}\" ,\"#{value[1]}\")"
-      end
-    end
 
-    def normalize value
-      if value.lstrip.rstrip == "TypeName:"
-        return   false
-      end
-      true
+class WmiServiceModelFileFormatter
+  include FileUtils
+  def initialize
+    @wmi_root_classes = []
+    #            io = IO.read(File.join(File.dirname(__FILE__), 'wmi_root_objects'))
+    execute_shell_command.split("\n").each do |value|
+      normalize value
+      @wmi_root_classes.push remove_preamble(value) if normalize value
     end
-
-    def execute_shell_command
-      `PowerShell.exe -Command "&{Get-WmiObject -List -namespace  ROOT\\Cli | Get-Member -MemberType Property | grep TypeName:}"`
-      #        fd = STDOUT.fcntl(Fcntl::F_DUPFD)
-      #        IO.new(fd, mode: 'w:UTF-16LE', cr_newline: true)
+    @classes =[]
+    @wmi_root_classes.each do |value|
+      @classes.push(Nanotek::Wmi_Class.new(value.last ,   value[0..value.length-2].join("\\"))) if value.length > 0
     end
-    #    @classes[:__Win32Provider] = Nonotek::Wmi_Class.new("__Win32Provider" ,   "ROOT")
-    #      def  remove_preamble value
-    #        to_remove = "TypeName: System.Management.ManagementClass#"
-    #        value.chomp.lstrip.split("#").last.split("\\").last
-    #      end
-
-    def remove_preamble value
-      split_all(value.chomp.lstrip.split("#").last)
+    @classes.each do |value|
+      puts "@classes[:#{value[:base_class]}] = Nanotek::Wmi_Class.new(\"#{value[0]}\" ,\"#{value[1]}\")"
     end
   end
 
+  def normalize value
+    if value.lstrip.rstrip == "TypeName:"
+      return   false
+    end
+    true
+  end
+
+  def execute_shell_command
+    `PowerShell.exe -Command "&{Get-WmiObject -List -namespace  ROOT\\ServiceModel | Get-Member -MemberType Property | grep TypeName:}"`
+    #        fd = STDOUT.fcntl(Fcntl::F_DUPFD)
+    #        IO.new(fd, mode: 'w:UTF-16LE', cr_newline: true)
+  end
+  #    @classes[:__Win32Provider] = Nonotek::Wmi_Class.new("__Win32Provider" ,   "ROOT")
+  #      def  remove_preamble value
+  #        to_remove = "TypeName: System.Management.ManagementClass#"
+  #        value.chomp.lstrip.split("#").last.split("\\").last
+  #      end
+
+  def remove_preamble value
+    split_all(value.chomp.lstrip.split("#").last)
+  end
+end
+  
   class WmiSecurityFileFormatter
     include FileUtils
     def initialize
@@ -350,6 +351,21 @@ module Nanotek
 
   end
 
+  class Wmi2Win32_PrinterController_Scanner
+    def initialize
+      @cim_v2_classes = Nanotek::WmiRootClasses.new
+      generate_class_files
+    end
+
+    def generate_class_files
+      wmf = WmiClassFormatter.new ["Win32_PrinterController" ,"ROOT\\cimv2"]
+      wmf_cd = wmf.cd if wmf.filter_shell_command
+      puts wmf_cd.to_yaml
+      yaml_serialzier = Nanotek::YamlSerializer.new wmf_cd , "C:/Java/git_repo/event_driven/base/yaml/"
+      yaml_serialzier.serialize
+    end
+  end
+  
   class Wmi2Win32_SystemResources_Scanner
     def initialize
       @cim_v2_classes = Nanotek::WmiRootClasses.new
@@ -411,10 +427,9 @@ module Nanotek
     end
   end
 
-
   class WmiWin32_USBControllerDevice_Scanner
     def initialize
-#      @cim_v2_classes = Nanotek::WmiRootClasses.new
+      #      @cim_v2_classes = Nanotek::WmiRootClasses.new
       generate_class_files
     end
 
@@ -426,7 +441,7 @@ module Nanotek
       yaml_serialzier.serialize
     end
   end
-  
+
   class WmiWin32_USBController_Scanner
     def initialize
       @cim_v2_classes = Nanotek::WmiRootClasses.new
@@ -438,7 +453,7 @@ module Nanotek
       wmf_cd = wmf.cd if wmf.filter_shell_command
       puts wmf_cd.to_yaml
       yaml_serialzier = Nanotek::YamlSerializer.new(wmf_cd).serialize
-#      yaml_serialzier.serialize
+      #      yaml_serialzier.serialize
     end
   end
 
@@ -701,7 +716,7 @@ module Nanotek
       @class_definition = args[0]
       @path = Nanotek::NilFilter.accept(args[1]) ? "C:/Java/git_repo/yml/" : args[1]
       self
-   end
+    end
 
     def serialize
       puts  "#{@class_definition.name}"
@@ -717,10 +732,10 @@ module Nanotek
 
 end
 
-Nanotek::WmiWin32_USBController_Scanner.new
+#Nanotek::WmiWin32_USBController_Scanner.new
 # Nanotek::WmiWin32ProductScanner.new
 #Nanotek::WmiCimV2Scanner.new
-#Nanotek::WmiRootCimV2FileFormatter.new
+Nanotek::Wmi2Win32_PrinterController_Scanner.new
 #TypeName: System.Management.ManagementObject#root\cimv2\Win32_USBHub
 #
 #Name                        MemberType Definition

@@ -3,7 +3,7 @@ require_relative 'test_base'
 module Nanotek
 
   DM_FILE = "Win32_DesktopMonitor.yml"
-  class  Win32OperatingSystemTest < Nanotek::TestBase
+  class  Test < Nanotek::TestBase
     
     @@wmi_class_name = "Win32_DesktopMonitor"
     

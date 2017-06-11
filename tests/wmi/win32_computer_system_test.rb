@@ -3,7 +3,7 @@ require_relative 'test_base'
 module Nanotek
 
   CS_FILE = "Win32_ComputerSystem.yml"
-  class  Win32ComputerSystemTest <  Nanotek::TestBase
+  class  Test <  Nanotek::TestBase
 
     @@wmi_class_name = "Win32_ComputerSystem"
     def setup

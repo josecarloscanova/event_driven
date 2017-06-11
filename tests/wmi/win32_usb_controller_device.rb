@@ -3,11 +3,9 @@ require_relative 'test_base'
 module Nanotek
 
   USB_CONTROLLER_FILE = "Win32_USBControllerDevice.yml"
-  
-  class  Win32SystemSlotTest < Nanotek::TestBase
+  class  Test < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_USBControllerDevice"
-    
     def setup
       YamlUnMarshaller.unmarshall([MODEL_PATH , USB_CONTROLLER_FILE])
     end

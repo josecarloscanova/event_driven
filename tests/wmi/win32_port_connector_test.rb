@@ -3,7 +3,7 @@ require_relative 'test_base'
 module Nanotek
 
   PCONNECTOR_FILE = "Win32_PortConnector.yml"
-  class Win32EventLogTest < Nanotek::TestBase
+  class Test < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_PortConnector"
     def setup

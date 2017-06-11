@@ -3,7 +3,7 @@ require_relative 'test_base'
 module Nanotek
 
   EVENT_FILE = "Win32_NTEventlogFile.yml"
-  class Win32EventLogTest < Nanotek::TestBase
+  class Test < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_NTEventlogFile"
     def setup

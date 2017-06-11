@@ -3,7 +3,7 @@ require_relative 'test_base'
 module Nanotek
 
   PROVIDER_FILE = "__Win32Provider.yml"
-  class  Win32ProviderTest <  Nanotek::TestBase
+  class  Test <  Nanotek::TestBase
     
     @@wmi_class_name = "__Win32Provider"
     

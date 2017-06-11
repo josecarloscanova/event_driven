@@ -5,7 +5,7 @@ module Nanotek
 
     BIOS_FILE = "Win32_CurrentTime.yml"
 
-    class  Win32SystemBiosTest < Nanotek::TestBase
+    class  Test < Nanotek::TestBase
 
       @@wmi_class_name = "Win32_CurrentTime"
       

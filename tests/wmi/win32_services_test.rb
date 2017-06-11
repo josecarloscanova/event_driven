@@ -3,9 +3,11 @@ require_relative 'test_base'
 module Nanotek
 
   SERVICE_FILE = "Win32_Service.yml"
+  
   class  Win32SystemServicesTest < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_Service"
+    
     def setup
       YamlUnMarshaller.unmarshall([MODEL_PATH , SERVICE_FILE])
     end

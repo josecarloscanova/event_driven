@@ -13,7 +13,7 @@ module Nanotek
             end
             
             def create_instance
-                Struct.new(:class_name , :properties , :path).new(@class_name , @properties ,@path)
+                Struct.new(:class_name , :properties , :path).new(@class_name , @properties , @path)
             end  
             
             private 
@@ -32,11 +32,16 @@ module Nanotek
                 
                 def with_properties class_definition
                   @properties = class_definition.properties if  class_definition.respond_to?'properties'
+                  verify_properties_consistency
                   @properties.reject {|property|
                      property if Nanotek::NilWithFilter.accept(property) 
-                  } 
-                  raise ArgumentError , "Class not well formed, no properties found." if @properties.nil?
+                  } unless properties.nil?
                 end  
+                
+#TODO: Fix exception for an alternative on                 
+                def verify_properties_consistency
+                  raise ArgumentError , "Class not well formed, no properties found." if @properties.nil?
+                end
   end
 
 end

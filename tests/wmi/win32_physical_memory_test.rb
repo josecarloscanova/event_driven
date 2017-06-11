@@ -3,7 +3,7 @@ require_relative 'test_base'
 module Nanotek
 
   PRODUCT_FILE = "Win32_PhysicalMemory.yml"
-  class Win32EventLogTest < Nanotek::TestBase
+  class Test < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_PhysicalMemory"
     def setup

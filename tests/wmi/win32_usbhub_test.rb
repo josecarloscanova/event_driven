@@ -3,10 +3,9 @@ require_relative 'test_base'
 module Nanotek
 
   USB_HUB_FILE = "Win32_USBHub.yml"
-  class  Win32SystemServicesTest <  Nanotek::TestBase
+  class  Test <  Nanotek::TestBase
 
     @@wmi_class_name = "Win32_USBHub"
-    
     def  setup
       YamlUnMarshaller.unmarshall([MODEL_PATH , USB_HUB_FILE])
     end

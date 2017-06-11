@@ -3,10 +3,9 @@ require_relative 'test_base'
 module Nanotek
 
   SDRIVERS_FILE = "Win32_SystemDriver.yml"
-  class  Win32SystemBiosTest < Nanotek::TestBase
+  class  Test < Nanotek::TestBase
 
     @@wmi_class_name = "Win32_SystemDriver"
-    
     def setup
       YamlUnMarshaller.unmarshall([MODEL_PATH , SDRIVERS_FILE])
     end
